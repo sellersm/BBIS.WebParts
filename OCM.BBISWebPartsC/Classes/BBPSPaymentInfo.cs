@@ -31,7 +31,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace OCM.BBISWebParts
+namespace OCM.BBISWebParts.Classes
 {
     public class BBPSPaymentInfo
     {
@@ -55,6 +55,13 @@ namespace OCM.BBISWebParts
             get { return this.skipCardValidation; }
             set { this.skipCardValidation = value; }
         }
+
+        private bool skipCreateGiftTransaction;
+        public bool SkipCreateGiftTransaction
+        {
+            get { return this.skipCreateGiftTransaction; }
+            set { this.skipCreateGiftTransaction = value; }
+        }        
 
         private List<BBNCExtensions.API.Transactions.PaymentArgs.DesignationInfo> designationInfo;
         public List<BBNCExtensions.API.Transactions.PaymentArgs.DesignationInfo> DesignationInfo
@@ -194,7 +201,7 @@ namespace OCM.BBISWebParts
             set { this.bbpid = value; }
         }
 
-        private string message;
+        private string message = string.Empty;
         public string StatusMessage
         {
             get { return this.message; }
@@ -225,9 +232,9 @@ namespace OCM.BBISWebParts
         public BBNCExtensions.API.Transactions.PaymentArgs GeneratePaymentArgs()
         {
             BBNCExtensions.API.Transactions.PaymentArgs results = new BBNCExtensions.API.Transactions.PaymentArgs();
-
+            results.SkipCreateGiftTransaction = this.skipCreateGiftTransaction;
             results.DemoMode = this.demoMode;
-            results.MerchantAccountId = 14;
+            results.MerchantAccountId = this.merchantAcctID;
             results.BBPS_MerchantAccountID = this.bbpid;
             results.SkipCardNumberValidation = this.skipCardValidation;            
 
