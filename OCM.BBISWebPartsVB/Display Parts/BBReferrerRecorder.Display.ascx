@@ -1,0 +1,2 @@
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="BBReferrerRecorder.Display.ascx.vb" Inherits="MoM.BBISWebParts.ReferrerRecorder_Display" %>
+<asp:Label ID="lblReferrer" runat="server" Text="" />
