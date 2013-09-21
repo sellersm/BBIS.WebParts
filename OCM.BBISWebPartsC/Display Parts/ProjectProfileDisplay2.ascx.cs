@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using OCM.BBISWebParts.Classes;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class ProjectProfileDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
+    public partial class ProjectProfileDisplay2 : BBNCExtensions.Parts.CustomPartDisplayBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +26,7 @@ namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
 
         private void loadProject()
         {
-            ProjectProfileOptions options = (ProjectProfileOptions)this.Content.GetContent(typeof(ProjectProfileOptions));
+            ProjectProfileOptions2 options = (ProjectProfileOptions2)this.Content.GetContent(typeof(ProjectProfileOptions2));
             if (options != null && Request.QueryString["id"] != null)
             {
                 Guid id = new Guid(Request.QueryString["id"].ToString());

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ProjectProfileEdit.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponsorship.WebParts.ProjectProfileEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ProjectProfileEdit2.ascx.cs" Inherits="OCM.BBISWebParts.ProjectProfileEdit2" %>
 <table>
     <tr>
         <td>Note type for project bio:</td>

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
     
     
-    public partial class ProjectProfileEdit {
+    public partial class ProjectProfileEdit2 {
         
         /// <summary>
         /// txtType control.
