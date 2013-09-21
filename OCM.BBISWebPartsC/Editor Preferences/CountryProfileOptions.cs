@@ -2,7 +2,7 @@
 
 namespace OCM.BBISWebParts
 {
-    public class CountryProfileOptions
+    public class CountryProfileOptions2
     {
         #region Fields
         private string _noteType;

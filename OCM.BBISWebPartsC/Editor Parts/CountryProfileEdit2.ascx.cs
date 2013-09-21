@@ -5,22 +5,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class CountryProfileEdit : BBNCExtensions.Parts.CustomPartEditorBase
+    public partial class CountryProfileEdit2 : BBNCExtensions.Parts.CustomPartEditorBase
     {
-        private CountryProfileOptions _myContent;
-        private CountryProfileOptions MyContent
+        private CountryProfileOptions2 _myContent;
+        private CountryProfileOptions2 MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (CountryProfileOptions)this.Content.GetContent(typeof(CountryProfileOptions));
+                    _myContent = (CountryProfileOptions2)this.Content.GetContent(typeof(CountryProfileOptions2));
 
                     if (_myContent == null)
                     {
-                        _myContent = new CountryProfileOptions();
+                        _myContent = new CountryProfileOptions2();
                     }
                 }
 

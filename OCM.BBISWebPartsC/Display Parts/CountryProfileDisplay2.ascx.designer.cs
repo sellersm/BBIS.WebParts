@@ -7,28 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
-{
+namespace OCM.BBISWebParts {
     
     
-    public partial class CountryProfileEdit {
+    public partial class CountryProfileDisplay2 {
         
         /// <summary>
-        /// txtNoteType control.
+        /// imgPhoto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNoteType;
+        protected global::System.Web.UI.WebControls.Image imgPhoto;
         
         /// <summary>
-        /// txtImage control.
+        /// lblInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImage;
+        protected global::System.Web.UI.WebControls.Label lblInfo;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

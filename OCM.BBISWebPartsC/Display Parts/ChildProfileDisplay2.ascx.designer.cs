@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class ChildProfileDisplay {
+    public partial class ChildProfileDisplay2 {
         
         /// <summary>
         /// imgPhoto control.

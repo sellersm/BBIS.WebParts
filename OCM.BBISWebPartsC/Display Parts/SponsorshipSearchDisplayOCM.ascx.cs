@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using Blackbaud.AppFx.WebAPI;
 using Blackbaud.AppFx.WebAPI.ServiceProxy;
 using Blackbaud.Web.Content.Core;
+using OCM.BBISWebParts.Classes;
 
 namespace OCM.BBISWebParts
 {

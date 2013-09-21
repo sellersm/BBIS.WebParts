@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CountryProfileEdit.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponsorship.WebParts.CountryProfileEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CountryProfileEdit2.ascx.cs" Inherits="OCM.BBISWebParts.CountryProfileEdit2" %>
 <table>
     <tr>
         <td>Country Bio Doc Type:</td>

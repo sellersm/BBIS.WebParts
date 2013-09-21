@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChildProfileEdit.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponsorship.WebParts.ChildProfileEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChildProfileEdit2.ascx.cs" Inherits="OCM.BBISWebParts.ChildProfileEdit2" %>
 <%@ Register TagPrefix="uc" TagName="PageLink" Src="~/admin/PageLink.ascx"  %>
 <table>
     <tr>

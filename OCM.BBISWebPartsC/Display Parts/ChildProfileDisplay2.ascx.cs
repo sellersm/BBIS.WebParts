@@ -11,22 +11,24 @@ using Blackbaud.AppFx.WebAPI;
 using Blackbaud.AppFx.WebAPI.ServiceProxy;
 using Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.ViewForms.SponsorshipOpportunity;
 using Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.ViewForms.SponsorshipProgram;
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+using OCM.BBISWebParts.Classes;
+
+namespace OCM.BBISWebParts
 {
-    public partial class ChildProfileDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
+    public partial class ChildProfileDisplay2 : BBNCExtensions.Parts.CustomPartDisplayBase
     {
-        private ChildProfileOptions _myContent;
-        private ChildProfileOptions MyContent
+        private ChildProfileOptions2 _myContent;
+        private ChildProfileOptions2 MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (ChildProfileOptions)this.Content.GetContent(typeof(ChildProfileOptions));
+                    _myContent = (ChildProfileOptions2)this.Content.GetContent(typeof(ChildProfileOptions2));
 
                     if (_myContent == null)
                     {
-                        _myContent = new ChildProfileOptions();
+                        _myContent = new ChildProfileOptions2();
                     }
                 }
 

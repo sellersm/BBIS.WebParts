@@ -2,7 +2,7 @@
 
 namespace OCM.BBISWebParts
 {
-    public class ChildProfileOptions
+    public class ChildProfileOptions2
     {
         #region Fields
         private string _fullPhotoType;

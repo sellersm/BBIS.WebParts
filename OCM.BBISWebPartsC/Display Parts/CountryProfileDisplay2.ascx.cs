@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class CountryProfileDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
+    public partial class CountryProfileDisplay2 : BBNCExtensions.Parts.CustomPartDisplayBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
 
         private void loadCountry()
         {
-            CountryProfileOptions options = (CountryProfileOptions)this.Content.GetContent(typeof(CountryProfileOptions));
+            CountryProfileOptions2 options = (CountryProfileOptions2)this.Content.GetContent(typeof(CountryProfileOptions2));
             if (options != null)
             {
                 Guid id = new Guid(Request.QueryString["id"].ToString());

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChildProfileDisplay.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponsorship.WebParts.ChildProfileDisplay" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChildProfileDisplay2.ascx.cs" Inherits="OCM.BBISWebParts.ChildProfileDisplay2" %>
 <table style="width: 100%">
 	<tbody>
 		<tr>

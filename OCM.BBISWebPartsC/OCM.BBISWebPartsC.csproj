@@ -68,10 +68,6 @@
       <HintPath>..\..\..\SDK 2.93\DLLReferences\Blackbaud.AppFx.WebAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Blackbaud.CustomFx.ChildSponsorship.CrmObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Blackbaud.CustomFx.ChildSponsorship.CrmObjects.dll</HintPath>
-    </Reference>
     <Reference Include="Blackbaud.Web.Content.Core, Version=6.45.2034.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SDK\DLLReferences\Blackbaud.Web.Content.Core.dll</HintPath>
@@ -99,8 +95,12 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
+    <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
+    <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
     <Content Include="Styles\Site.css" />
@@ -116,7 +116,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BBPSPaymentInfo.cs" />
+    <Compile Include="Classes\BBPSPaymentInfo.cs" />
+    <Compile Include="Classes\EncryptedQueryString.cs" />
+    <Compile Include="Display Parts\ChildProfileDisplay2.ascx.cs">
+      <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\ChildProfileDisplay2.ascx.designer.cs">
+      <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\CountryProfileDisplay2.ascx.cs">
+      <DependentUpon>CountryProfileDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\CountryProfileDisplay2.ascx.designer.cs">
+      <DependentUpon>CountryProfileDisplay2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx.cs">
       <DependentUpon>SponsorshipPaymentFormDisplayOCM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +145,20 @@
     </Compile>
     <Compile Include="Display Parts\SponsorshipSearchDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchDisplayOCM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\ChildProfileEdit2.ascx.cs">
+      <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
+      <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\CountryProfileEdit2.ascx.cs">
+      <DependentUpon>CountryProfileEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\CountryProfileEdit2.ascx.designer.cs">
+      <DependentUpon>CountryProfileEdit2.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx.cs">
       <DependentUpon>SponsorshipPaymentFormEditOCM.ascx</DependentUpon>
@@ -145,14 +174,17 @@
     <Compile Include="Editor Parts\SponsorshipSearchEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchEditOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Preferences\ChildProfileOptions.cs" />
+    <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
+    <Compile Include="Editor Preferences\CountryProfileOptions.cs" />
+    <Compile Include="Editor Preferences\EmailAChildOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM.cs" />
     <Compile Include="Editor Preferences\SponsorshipSearchOptionsOCM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Classes\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Classes\" />
     <Folder Include="MergeFields\" />
   </ItemGroup>
   <ItemGroup>

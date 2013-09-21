@@ -4,26 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+using OCM.BBISWebParts.Classes;
+
+namespace OCM.BBISWebParts
 {
-    public partial class ChildProfileEdit : BBNCExtensions.Parts.CustomPartEditorBase
+    public partial class ChildProfileEdit2 : BBNCExtensions.Parts.CustomPartEditorBase
     {
         protected Blackbaud.Web.Content.Portal.PageLink plinkCountryPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkProjectPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkSponsorPage;
 
-        private ChildProfileOptions _myContent;
-        private ChildProfileOptions MyContent
+        private ChildProfileOptions2 _myContent;
+        private ChildProfileOptions2 MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (ChildProfileOptions)this.Content.GetContent(typeof(ChildProfileOptions));
+                    _myContent = (ChildProfileOptions2)this.Content.GetContent(typeof(ChildProfileOptions2));
 
                     if (_myContent == null)
                     {
-                        _myContent = new ChildProfileOptions();
+                        _myContent = new ChildProfileOptions2();
                     }
                 }
 
