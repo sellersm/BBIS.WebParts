@@ -7,8 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OCM.BBISWebParts
-{
+namespace OCM.BBISWebParts {
+    
     
     public partial class MySponsorshipsDisplay2 {
         
@@ -274,15 +274,6 @@ namespace OCM.BBISWebParts
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
         
         /// <summary>
-        /// radPayment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList radPayment;
-        
-        /// <summary>
         /// txtCcName control.
         /// </summary>
         /// <remarks>
@@ -389,24 +380,6 @@ namespace OCM.BBISWebParts
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
-        
-        /// <summary>
-        /// radCcRecurrence control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList radCcRecurrence;
-        
-        /// <summary>
-        /// RequiredFieldValidator19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator19;
         
         /// <summary>
         /// btnSubmit control.

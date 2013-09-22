@@ -60,7 +60,7 @@ namespace OCM.BBISWebParts
 
             DataListLoadRequest request = SponsorshipDataList.CreateRequest(this.API.AppFxWebServiceProvider);
             request.DataListID = new Guid("b87f9b24-91e9-40c2-b54a-f6fbcc09f6f0");
-            if (Request.QueryString["Id"] != null)
+            if (Request.QueryString["Id"] != null)  // Why is this here?? 
             {
                 request.ContextRecordID = Convert.ToString(Request.QueryString["Id"]);
             }

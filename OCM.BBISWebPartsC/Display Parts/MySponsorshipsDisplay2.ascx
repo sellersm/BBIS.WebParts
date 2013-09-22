@@ -1,28 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySponsorshipsDisplay2.ascx.cs" Inherits="OCM.BBISWebParts.MySponsorshipsDisplay2" %>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#<%= radPayment.ClientID %>").change(function () {
-            var enable = false;
 
-            if ($("#<%= radPayment.ClientID %>").find('input:checked').val() == "CC") {
-                $("#tblCC").css("display", "table");
-                $("#tblCheck").css("display", "none");
-                enable = true;
-            } else {
-                $("#tblCC").css("display", "none");
-                $("#tblCheck").css("display", "table");
-                $("#<%= radCcRecurrence.ClientID %>").val("OneTimeGift");
-            }
-
-            ValidatorEnable($("#<%= reqCcName.ClientID %>")[0], enable);
-            ValidatorEnable($("#<%= RequiredFieldValidator12.ClientID %>")[0], enable);
-            ValidatorEnable($("#<%= RequiredFieldValidator15.ClientID %>")[0], enable);
-            ValidatorEnable($("#<%= RequiredFieldValidator16.ClientID %>")[0], enable);
-            ValidatorEnable($("#<%= RequiredFieldValidator17.ClientID %>")[0], enable);
-            ValidatorEnable($("#<%= RequiredFieldValidator18.ClientID %>")[0], enable);
-        });
-    });
-</script>
 <style type="text/css">
     .Validation
     {
@@ -102,9 +79,6 @@
         <asp:ValidationSummary ID="ValidationSummary1" runat="server"  ValidationGroup="Checkout" />
         <table>
             <tr>
-                <td class="NCC_ScholarshipApp_subSectionHeader">Billing Address:</td>
-            </tr>
-            <tr>
                 <td>
                     <table>
                         <tr>
@@ -114,6 +88,10 @@
                                 <asp:CompareValidator ID="vldAmount" runat="server" ControlToValidate="txtAmount" Operator="DataTypeCheck" Type="Currency" ValidationGroup="Checkout" ErrorMessage="You must enter a dollar amount for Amount field." /> 
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAmount" ErrorMessage="Amount" ForeColor="Red" ValidationGroup="Checkout">*</asp:RequiredFieldValidator>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            &nbsp;</td>
                         </tr>
                         <tr>
                             <td>Billing Address:</td>
@@ -480,13 +458,7 @@
             </tr>
             <tr>
                 <td>
-                    <span class="BBFieldCaption ChildSearchFieldCaptionBold">Please Choose Your Payment
-                        Method</span> <span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
-                    <asp:RadioButtonList ID="radPayment" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem Value="CC" Selected="True">Credit Card</asp:ListItem>
-                        <asp:ListItem Value="Check">Check</asp:ListItem>
-                    </asp:RadioButtonList>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td>
@@ -499,7 +471,7 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td class="style1" colspan="2">
+                                        <td class="style1">
                                             <span id="PC1689_ctl00_lblCcName" class="BBFieldCaption ChildSearchFieldCaption">Name
                                                     on Card</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
                                         </td>
@@ -511,7 +483,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="style1" colspan="2">
+                                        <td class="style1">
                                             <span id="PC1689_ctl00_lblCcNumber" class="BBFieldCaption ChildSearchFieldCaption">Card
                                                     Number</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
                                         </td>
@@ -523,7 +495,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="style1" colspan="2">
+                                        <td class="style1">
                                             <span id="PC1689_ctl00_lblCcSecurityCode" class="BBFieldCaption ChildSearchFieldCaption">Security Code</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
                                         </td>
                                         <td>
@@ -534,7 +506,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="style1" colspan="2">
+                                        <td class="style1">
                                             <span id="PC1689_ctl00_lblCcType" class="BBFieldCaption ChildSearchFieldCaption">Credit
                                                     Card Type</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
                                         </td>
@@ -552,7 +524,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="style1" colspan="2">
+                                        <td class="style1">
                                             <span id="PC1689_ctl00_lblCcExpDate" class="BBFieldCaption ChildSearchFieldCaption">Expiration Date</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
                                         </td>
                                         <td>
@@ -580,28 +552,7 @@
                                                 Text="*" ErrorMessage="Credit Card Expiration Year" ValidationGroup="Checkout" />
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="style1" colspan="2">
-                                            <span id="PC1689_ctl00_lblCcRecurrence" class="BBFieldCaption ChildSearchFieldCaption">Select Your Sponsorship Recurrence</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <asp:RadioButtonList ID="radCcRecurrence" runat="server">
-                                                <asp:ListItem Value="OneTimeGift">One Time Sponsorship Payment</asp:ListItem>
-                                                <asp:ListItem Value="3">Monthly</asp:ListItem>
-                                                <asp:ListItem Value="2">Quarterly</asp:ListItem>
-                                                <asp:ListItem Value="0">Annually</asp:ListItem>
-                                            </asp:RadioButtonList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="radCcRecurrence"
-                                                Text="*" ErrorMessage="Payment Recurrence" ValidationGroup="Checkout" />
-                                        </td>
-                                        <td>
-                                            <span id="PC1689_ctl00_reqVldCcRecurrence" style="color: Red; visibility: hidden;">&nbsp;*</span>
-                                        </td>
-                                        <td></td>
-                                    </tr>
+                                   
                                 </table>
                             </td>
                         </tr>

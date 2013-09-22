@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="ImageHandler.ashx.cs" Class="Blackbaud.CustomFx.ChildSponsorship.WebParts.ImageHandler" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="ImageHandler.ashx.cs" Class="OCM.BBISWebParts.ImageHandler" %>

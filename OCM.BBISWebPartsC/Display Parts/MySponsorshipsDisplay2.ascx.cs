@@ -90,7 +90,7 @@ namespace OCM.BBISWebParts
                     }
                     else
                     {
-                        cmd.SelectCommand.Parameters.AddWithValue("@Id", "83D3F0A9-9645-4DCA-87A5-CC16AB1D5B4F");
+                        cmd.SelectCommand.Parameters.AddWithValue("@Id", "354E31CD-CD89-4078-9689-95A4CCCF310B"); //"83D3F0A9-9645-4DCA-87A5-CC16AB1D5B4F"); // Why is this here?
                     }
 
                     con.Open();
@@ -319,24 +319,19 @@ namespace OCM.BBISWebParts
                 payment.AddDesignationInfo(amount, "BBIS Child Sponsorship Transaction", designationId);
             }
 
-            if (this.radPayment.SelectedValue == "Check")
-            {
-                payment.PaymentMethod = BBNCExtensions.API.Transactions.PaymentArgs.ePaymentMethod.Check;
-            }
-            else
-            {
-                payment.PaymentMethod = BBNCExtensions.API.Transactions.PaymentArgs.ePaymentMethod.CreditCard;
-                payment.CreditCardCSC = this.txtCcSecurityCode.Text;
-                payment.CreditCardExpirationMonth = Convert.ToInt32(this.cmbCcExpMonth.SelectedValue);
-                payment.CreditCardExpirationYear = Convert.ToInt32(this.cmbCcExpYear.SelectedValue);
-                payment.CreditCardHolderName = this.txtCcName.Text;
-                payment.CreditCardNumber = this.txtCcNumber.Text; //VIOLATION of PCI Compliance - as a developer we can by no means ever write code that consumes someones credit card number
-                payment.CreditCardType = (BBNCExtensions.Interfaces.Services.CreditCardType)Enum.Parse(typeof(BBNCExtensions.Interfaces.Services.CreditCardType), this.cmbCcType.SelectedValue);
-                payment.DonorStreetAddress = this.txtBillingAddress.Text;
-                payment.DonorCity = this.txtBillingCity.Text;
-                payment.DonorStateProvince = this.cmbBillingCountry.SelectedValue == "US" ? this.cmbBillingState.SelectedValue : this.txtBillingRegion.Text;
-                payment.DonorZIP = this.txtBillingZip.Text;                
-            }
+            
+            payment.PaymentMethod = BBNCExtensions.API.Transactions.PaymentArgs.ePaymentMethod.CreditCard;
+            payment.CreditCardCSC = this.txtCcSecurityCode.Text;
+            payment.CreditCardExpirationMonth = Convert.ToInt32(this.cmbCcExpMonth.SelectedValue);
+            payment.CreditCardExpirationYear = Convert.ToInt32(this.cmbCcExpYear.SelectedValue);
+            payment.CreditCardHolderName = this.txtCcName.Text;
+            payment.CreditCardNumber = this.txtCcNumber.Text; //VIOLATION of PCI Compliance - as a developer we can by no means ever write code that consumes someones credit card number
+            payment.CreditCardType = (BBNCExtensions.Interfaces.Services.CreditCardType)Enum.Parse(typeof(BBNCExtensions.Interfaces.Services.CreditCardType), this.cmbCcType.SelectedValue);
+            payment.DonorStreetAddress = this.txtBillingAddress.Text;
+            payment.DonorCity = this.txtBillingCity.Text;
+            payment.DonorStateProvince = this.cmbBillingCountry.SelectedValue == "US" ? this.cmbBillingState.SelectedValue : this.txtBillingRegion.Text;
+            payment.DonorZIP = this.txtBillingZip.Text;                
+         
 
             BBNCExtensions.API.Transactions.Donations.RecordDonationReply reply = this.API.Transactions.RecordDonation(payment.GeneratePaymentArgs());
 
