@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public class MySponsorshipsOptions
+    public class MySponsorshipsOptions2
     {
         #region Fields
         private string _thumbnailNoteType;

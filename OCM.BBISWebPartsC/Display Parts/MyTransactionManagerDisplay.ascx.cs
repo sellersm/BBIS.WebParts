@@ -11,7 +11,7 @@ using Blackbaud.Web.Content.Core;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Blackbaud.CustomFx.ChildSponorship.WebParts
+namespace OCM.BBISWebParts
 {
     public partial class MyTransactionManagerDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
     {

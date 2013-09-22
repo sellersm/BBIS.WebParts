@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts {
+namespace OCM.BBISWebParts
+{
     
-    
-    public partial class MySponsorshipsDisplay {
+    public partial class MySponsorshipsDisplay2 {
         
         /// <summary>
         /// mvMain control.

@@ -5,25 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class MySponsorshipsEdit : BBNCExtensions.Parts.CustomPartEditorBase
+    public partial class MySponsorshipsEdit2 : BBNCExtensions.Parts.CustomPartEditorBase
     {
         protected Blackbaud.Web.Content.Portal.PageLink plinkMoreInfoPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkEmailPage;
 
-        private MySponsorshipsOptions _myContent;
-        private MySponsorshipsOptions MyContent
+        private MySponsorshipsOptions2 _myContent;
+        private MySponsorshipsOptions2 MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (MySponsorshipsOptions)this.Content.GetContent(typeof(MySponsorshipsOptions));
+                    _myContent = (MySponsorshipsOptions2)this.Content.GetContent(typeof(MySponsorshipsOptions2));
 
                     if (_myContent == null)
                     {
-                        _myContent = new MySponsorshipsOptions();
+                        _myContent = new MySponsorshipsOptions2();
                     }
                 }
 

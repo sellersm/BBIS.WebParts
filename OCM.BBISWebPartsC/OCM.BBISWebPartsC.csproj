@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OCM.BBISWebPartsC</RootNamespace>
+    <RootNamespace>OCM.BBISWebParts</RootNamespace>
     <AssemblyName>OCM.BBISWebPartsC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
@@ -68,6 +68,13 @@
       <HintPath>..\..\..\SDK 2.93\DLLReferences\Blackbaud.AppFx.WebAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Blackbaud.CustomFx.ChildSponsorship.CrmObjects">
+      <HintPath>References\Blackbaud.CustomFx.ChildSponsorship.CrmObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.Web.Content.Common, Version=6.45.2034.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SDK\DLLReferences\Blackbaud.Web.Content.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Blackbaud.Web.Content.Core, Version=6.45.2034.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SDK\DLLReferences\Blackbaud.Web.Content.Core.dll</HintPath>
@@ -99,6 +106,8 @@
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
     <Content Include="Display Parts\EmailAChildDisplay.ascx" />
     <Content Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx" />
+    <Content Include="Display Parts\MySponsorshipsDisplay2.ascx" />
+    <Content Include="Display Parts\MyTransactionManagerDisplay.ascx" />
     <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
@@ -106,6 +115,8 @@
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
     <Content Include="Editor Parts\EmailAChildEdit.ascx" />
     <Content Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx" />
+    <Content Include="Editor Parts\MySponsorshipsEdit2.ascx" />
+    <Content Include="Editor Parts\MyTransactionManagerEdit.ascx" />
     <Content Include="Editor Parts\ProjectProfileEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
@@ -151,6 +162,20 @@
     </Compile>
     <Compile Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx.designer.cs">
       <DependentUpon>MyFinancialCommitmentsDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\MySponsorshipsDisplay2.ascx.cs">
+      <DependentUpon>MySponsorshipsDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\MySponsorshipsDisplay2.ascx.designer.cs">
+      <DependentUpon>MySponsorshipsDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\MyTransactionManagerDisplay.ascx.cs">
+      <DependentUpon>MyTransactionManagerDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\MyTransactionManagerDisplay.ascx.designer.cs">
+      <DependentUpon>MyTransactionManagerDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.cs">
       <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
@@ -200,6 +225,20 @@
     </Compile>
     <Compile Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx.designer.cs">
       <DependentUpon>MyFinancialCommitmentsEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\MySponsorshipsEdit2.ascx.cs">
+      <DependentUpon>MySponsorshipsEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\MySponsorshipsEdit2.ascx.designer.cs">
+      <DependentUpon>MySponsorshipsEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\MyTransactionManagerEdit.ascx.cs">
+      <DependentUpon>MyTransactionManagerEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\MyTransactionManagerEdit.ascx.designer.cs">
+      <DependentUpon>MyTransactionManagerEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\ProjectProfileEdit2.ascx.cs">
       <DependentUpon>ProjectProfileEdit2.ascx</DependentUpon>

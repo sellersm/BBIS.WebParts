@@ -17,24 +17,24 @@ using Blackbaud.AppFx.Fundraising.Catalog.V1_1.WebApiClient.ViewForms.Revenue;
 using Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.DataLists.Revenue;
 using Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue;
 using Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.ViewForms.Revenue;
-using Blackbaud.CustomFx.ChildSponorship.WebParts.Classes;
+using OCM.BBISWebParts.Classes;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public partial class MySponsorshipsDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
+    public partial class MySponsorshipsDisplay2 : BBNCExtensions.Parts.CustomPartDisplayBase
     {
-        private MySponsorshipsOptions _myContent;
-        private MySponsorshipsOptions MyContent
+        private MySponsorshipsOptions2 _myContent;
+        private MySponsorshipsOptions2 MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (MySponsorshipsOptions)this.Content.GetContent(typeof(MySponsorshipsOptions));
+                    _myContent = (MySponsorshipsOptions2)this.Content.GetContent(typeof(MySponsorshipsOptions2));
 
                     if (_myContent == null)
                     {
-                        _myContent = new MySponsorshipsOptions();
+                        _myContent = new MySponsorshipsOptions2();
                     }
                 }
 
@@ -257,16 +257,16 @@ namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
                 data.CONSTITUENTID = this.API.Users.CurrentUser.BackOfficeGuid;
                 data.DATE = DateTime.Now;
                 data.AMOUNT = amount;
-                data.PAYMENTMETHODCODE_IDVALUE = AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.PAYMENTMETHODCODE.Credit_Card;
-                data.APPLICATIONCODE_IDVALUE = AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.APPLICATIONCODE.Recurring_Gift;
+                data.PAYMENTMETHODCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.PAYMENTMETHODCODE.Credit_Card;
+                data.APPLICATIONCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.APPLICATIONCODE.Recurring_Gift;
                 data.REVENUESTREAMS = new PaymentAddFormData.REVENUESTREAMS_DATAITEM[1];
                 data.REVENUESTREAMS[0] = new PaymentAddFormData.REVENUESTREAMS_DATAITEM();
-                data.REVENUESTREAMS[0].APPLICATIONCODE_IDVALUE = AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.REVENUESTREAMS_APPLICATIONCODE.Recurring_Gift;
+                data.REVENUESTREAMS[0].APPLICATIONCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.REVENUESTREAMS_APPLICATIONCODE.Recurring_Gift;
                 data.REVENUESTREAMS[0].APPLIED = amount;
                 data.REVENUESTREAMS[0].APPLICATIONID = new Guid(giftsToProcess[i]);
                 data.CREDITCARDNUMBER = this.txtCcNumber.Text;
                 data.CARDHOLDERNAME = this.txtCcName.Text;
-                data.EXPIRESON = new AppFx.FuzzyDate(Convert.ToInt32(this.cmbCcExpYear.SelectedValue), Convert.ToInt32(this.cmbCcExpMonth.SelectedValue));
+                data.EXPIRESON = new Blackbaud.AppFx.FuzzyDate(Convert.ToInt32(this.cmbCcExpYear.SelectedValue), Convert.ToInt32(this.cmbCcExpMonth.SelectedValue));
                 data.CREDITTYPECODEID = Utility.GetCrmCC(this.cmbCcType.SelectedValue);
                 data.RECEIPTAMOUNT = amount;                
                 data.SOURCECODE = "BBIS";

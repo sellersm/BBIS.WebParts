@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blackbaud.CustomFx.ChildSponorship.WebParts
+namespace OCM.BBISWebParts
 {
     public class MyTransactionManagerOptions
     {

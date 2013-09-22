@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackbaud.CustomFx.ChildSponorship.WebParts {
+namespace OCM.BBISWebParts {
     
     
     public partial class MyTransactionManagerDisplay {      

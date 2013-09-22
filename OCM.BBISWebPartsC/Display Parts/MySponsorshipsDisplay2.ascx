@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySponsorshipsDisplay.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponsorship.WebParts.MySponsorshipsDisplay" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySponsorshipsDisplay2.ascx.cs" Inherits="OCM.BBISWebParts.MySponsorshipsDisplay2" %>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#<%= radPayment.ClientID %>").change(function () {

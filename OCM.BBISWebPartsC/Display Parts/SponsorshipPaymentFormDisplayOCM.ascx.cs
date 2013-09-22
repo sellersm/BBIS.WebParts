@@ -12,6 +12,7 @@ using Blackbaud.AppFx.Constituent.Catalog.WebApiClient.AddForms.Constituent;
 using Blackbaud.AppFx.Constituent.Catalog.WebApiClient.SearchLists.Constituent;
 using Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue;
 using Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.AddForms.Sponsorship;
+using OCM.BBISWebParts.Classes;
 
 namespace OCM.BBISWebParts
 {
