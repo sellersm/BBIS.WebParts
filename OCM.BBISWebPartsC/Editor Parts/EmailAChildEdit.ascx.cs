@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Blackbaud.Web.Content.Core;
 
-namespace Blackbaud.CustomFx.ChildSponorship.WebParts
+namespace OCM.BBISWebParts
 {
     public partial class EmailAChildEdit : BBNCExtensions.Parts.CustomPartEditorBase
     {

@@ -5,10 +5,10 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Blackbaud.CustomFx.ChildSponorship.WebParts.Classes;
 using Blackbaud.Web.Content.Core;
+using OCM.BBISWebParts.Classes;
 
-namespace Blackbaud.CustomFx.ChildSponorship.WebParts
+namespace OCM.BBISWebParts
 {
     public partial class EmailAChildDisplay : BBNCExtensions.Parts.CustomPartDisplayBase
     {

@@ -97,10 +97,16 @@
   <ItemGroup>
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
+    <Content Include="Display Parts\EmailAChildDisplay.ascx" />
+    <Content Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx" />
+    <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
+    <Content Include="Editor Parts\EmailAChildEdit.ascx" />
+    <Content Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx" />
+    <Content Include="Editor Parts\ProjectProfileEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
     <Content Include="Styles\Site.css" />
@@ -132,6 +138,27 @@
     <Compile Include="Display Parts\CountryProfileDisplay2.ascx.designer.cs">
       <DependentUpon>CountryProfileDisplay2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\EmailAChildDisplay.ascx.cs">
+      <DependentUpon>EmailAChildDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\EmailAChildDisplay.ascx.designer.cs">
+      <DependentUpon>EmailAChildDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx.cs">
+      <DependentUpon>MyFinancialCommitmentsDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx.designer.cs">
+      <DependentUpon>MyFinancialCommitmentsDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.cs">
+      <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.designer.cs">
+      <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx.cs">
       <DependentUpon>SponsorshipPaymentFormDisplayOCM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +187,27 @@
     <Compile Include="Editor Parts\CountryProfileEdit2.ascx.designer.cs">
       <DependentUpon>CountryProfileEdit2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\EmailAChildEdit.ascx.cs">
+      <DependentUpon>EmailAChildEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\EmailAChildEdit.ascx.designer.cs">
+      <DependentUpon>EmailAChildEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx.cs">
+      <DependentUpon>MyFinancialCommitmentsEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx.designer.cs">
+      <DependentUpon>MyFinancialCommitmentsEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\ProjectProfileEdit2.ascx.cs">
+      <DependentUpon>ProjectProfileEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\ProjectProfileEdit2.ascx.designer.cs">
+      <DependentUpon>ProjectProfileEdit2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx.cs">
       <DependentUpon>SponsorshipPaymentFormEditOCM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,16 +226,28 @@
     <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
     <Compile Include="Editor Preferences\CountryProfileOptions.cs" />
     <Compile Include="Editor Preferences\EmailAChildOptions.cs" />
+    <Compile Include="Editor Preferences\MyFinancialCommitmentsOptions.cs" />
+    <Compile Include="Editor Preferences\MySponsorshipsOptions.cs" />
+    <Compile Include="Editor Preferences\MyTransactionManagerOptions.cs" />
+    <Compile Include="Editor Preferences\ProjectProfileOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM.cs" />
     <Compile Include="Editor Preferences\SponsorshipSearchOptionsOCM.cs" />
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MergeFields\ChildMergeData.cs" />
+    <Compile Include="MergeFields\eMyFields.cs" />
+    <Compile Include="MergeFields\MergeFieldsData.cs" />
+    <Compile Include="MergeFields\MergeFieldsProvider.cs" />
+    <Compile Include="MergeFields\MyMergeData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="MergeFields\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ImageHandler.ashx" />
     <None Include="postbuild.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

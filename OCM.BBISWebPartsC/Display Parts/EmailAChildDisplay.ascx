@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmailAChildDisplay.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponorship.WebParts.EmailAChildDisplay" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmailAChildDisplay.ascx.cs" Inherits="OCM.BBISWebParts.EmailAChildDisplay" %>
 <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" />
 <table>
     <tr>

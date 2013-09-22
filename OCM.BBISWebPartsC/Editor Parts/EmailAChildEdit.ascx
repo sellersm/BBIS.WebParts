@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmailAChildEdit.ascx.cs" Inherits="Blackbaud.CustomFx.ChildSponorship.WebParts.EmailAChildEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmailAChildEdit.ascx.cs" Inherits="OCM.BBISWebParts.EmailAChildEdit" %>
 <%@ Register TagPrefix="uc" TagName="HTMLEditor" Src="~/admin/HtmlEditorControl2.ascx" %>
 <%@ Register TagPrefix="uc" TagName="PageLink" Src="~/admin/PageLink.ascx"  %>
 <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" />

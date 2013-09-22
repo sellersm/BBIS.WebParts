@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Blackbaud.CustomFx.ChildSponsorship.WebParts
+namespace OCM.BBISWebParts
 {
-    public class MyFinancialCommitmentsOptions
+    public class MyFinancialCommitmentsOptions2
     {
         #region Fields
         private bool _demoMode;
