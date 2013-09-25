@@ -49,6 +49,7 @@ namespace OCM.BBISWebParts
                 //if (this.API.Users.CurrentUser.BackOfficeGuid != Guid.Empty)
                 //{
                     this.bindSponsorships();
+                    Session.Remove("PaymentCartData");
                 //}
             }
         }
@@ -63,17 +64,25 @@ namespace OCM.BBISWebParts
                     so.ID,
                     so.LOOKUPID AS 'Child No',
                     sc.FIRSTNAME + ' ' + sc.LASTNAME AS 'Child Name',
-                    sc.BIRTHDATE AS 'Birthdate',
+                    dbo.UFN_DATE_FROMFUZZYDATE(sc.BIRTHDATE) AS 'Birthdate',
                     sc.AGE AS 'Age',
                     r.ID AS 'RevenueId',
                     c.NAME as 'SPONSORNAME',
-                    c.LOOKUPID as 'SPONSORID'
+                    c.LOOKUPID as 'SPONSORID',
+                  case 
+						when r_sch.FREQUENCYCODE = 0 then r.AMOUNT / 12 --annually
+						when r_sch.FREQUENCYCODE = 1 then r.AMOUNT / 6 --6mo
+						when r_sch.FREQUENCYCODE = 2 then r.AMOUNT / 3 --qtr
+						when r_sch.FREQUENCYCODE = 3 then r.AMOUNT -- 'mo'
+						else r.AMOUNT
+					end as MonthlyAmount
                 FROM
                     SPONSORSHIP s
                     INNER JOIN SPONSORSHIPOPPORTUNITY so ON s.SPONSORSHIPOPPORTUNITYID = so.ID
                     INNER JOIN SPONSORSHIPOPPORTUNITYCHILD sc ON so.ID = sc.ID
                     INNER JOIN REVENUESPLIT rs ON s.REVENUESPLITID = rs.ID
                     INNER JOIN REVENUE r ON rs.REVENUEID = r.ID
+                    INNER JOIN REVENUESCHEDULE r_sch on  r.id = r_sch.id
                     left join CONSTITUENT C on s.CONSTITUENTID = c.ID
                 WHERE
 	                s.CONSTITUENTID = @Id
@@ -173,25 +182,37 @@ namespace OCM.BBISWebParts
             {
                 this.bindPayments(e.CommandArgument.ToString());
             }
-            else if (e.CommandName == "MakePayment")
+            else if (e.CommandName == "MakeSinglePayment")
             {
-                ViewState["GiftId"] = e.CommandArgument.ToString();
-                this.populateYears();
-                this.mvMain.SetActiveView(this.viewPay);
-                this.txtAmount.Text = Utility.GetSponsorshipAmount().ToString("c").Replace("$", "").Replace(",", "");
-            }
-        }
+                this.mvMain.SetActiveView(this.viewPayAmounts);
+               
+                DataTable dt = cartData;
+     
 
-        private void populateYears()
-        {
-            this.cmbCcExpYear.Items.Clear();
-            this.cmbCcExpYear.Items.Add(new ListItem("-- Year --", ""));
-            for (int i = 0; i < 15; i++)
-            {
-                int year = DateTime.Now.Year + i;
-                this.cmbCcExpYear.Items.Add(new ListItem(year.ToString(), year.ToString()));
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = this.gvSponsorships.Rows[index];
+                DataRow dr = dt.NewRow();
+                dr["Id"] = this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"];
+                dr["Months"] = 1;
+                dr["Number"] = ((LinkButton)row.FindControl("lnkNo")).Text;
+                dr["Name"] = ((LinkButton)row.FindControl("lnkName")).Text;
+                dr["Amount"] = Convert.ToDecimal(((Label)row.FindControl("lblMonthlyAmount")).Text);
+
+                dt.Rows.Add(dr);
+
+                cartData = dt;
+                bindPaymentCartGrid();
+
+      
+                this.mvMain.SetActiveView(this.viewPayAmounts);
+
+                //ViewState["GiftId"] = e.CommandArgument.ToString();
+                //this.populateYears();
+                //this.mvMain.SetActiveView(this.viewPay);
+                //this.txtAmount.Text = Utility.GetSponsorshipAmount().ToString("c").Replace("$", "").Replace(",", "");
             }
         }
+    
 
         private void bindPayments(string id)
         {
@@ -225,59 +246,228 @@ namespace OCM.BBISWebParts
             this.gvPayments.DataBind();
         }
 
+
+        private DataTable cartData
+        {
+            get
+            {
+                if (Session["PaymentCartData"] == null)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Id", typeof(Guid));
+                    dt.Columns.Add("Number", typeof(string));
+                    dt.Columns.Add("Name", typeof(string));
+                    dt.Columns.Add("Months", typeof(int));
+                    dt.Columns.Add("Amount", typeof(decimal));
+                    Session["PaymentCartData"] = dt;
+                }
+
+                return (DataTable)Session["PaymentCartData"];
+            }
+            set
+            {
+                Session["PaymentCartData"] = value;
+            }
+        }
+
+        private decimal total
+        {
+            get
+            {
+                decimal results = 0;
+                foreach (DataRow dr in this.cartData.Rows)
+                {
+                    results += Convert.ToInt32(dr["Months"]) * Convert.ToDecimal(dr["Amount"]);
+                }
+                return results;
+            }
+        }
+
+        protected void lnkMakePayment_Click(object sender, EventArgs e)
+        {
+            //            this.mvMain.SetActiveView(this.viewPay);
+            this.mvMain.SetActiveView(this.viewPayAmounts);
+
+
+            DataTable dt = cartData;
+
+
+            //this.populateYears();
+            //List<string> selectedSponsorships = new List<string>();
+            //decimal totalPayments = 0;
+
+            foreach (GridViewRow row in this.gvSponsorships.Rows)
+            {
+                bool isChecked = ((CheckBox)row.FindControl("chkPayment")).Checked;
+                if (isChecked)
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["Id"] = this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"];
+                    dr["Months"] = 1;
+                    dr["Number"] = ((LinkButton)row.FindControl("lnkNo")).Text;
+                    dr["Name"] = ((LinkButton)row.FindControl("lnkName")).Text;
+                    dr["Amount"] = Convert.ToDecimal(((Label)row.FindControl("lblMonthlyAmount")).Text);
+
+                    dt.Rows.Add(dr);
+
+                    //string id = this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"].ToString();
+                    //selectedSponsorships.Add(id);
+                    //count++;
+                }
+            }
+
+            cartData = dt;
+            bindPaymentCartGrid();
+
+            //totalPayments = count * Utility.GetSponsorshipAmount();
+            //this.txtAmount.Text = totalPayments.ToString("c").Replace("$","").Replace(",","");
+
+            //this.lblSummary.Visible = true;
+            //this.lblSummary.Text = "<br /><br /><b>Total payments for selected sponsorships is: " + totalPayments.ToString("c") + "<b><br />";
+            //ViewState["selectedSponsorships"] = selectedSponsorships;
+        }
+
+        private void bindPaymentCartGrid()
+        {
+            this.gvCart.DataSource = this.cartData;
+            this.gvCart.DataBind();
+        }
+
+        protected void gvCart_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[2].Text = "Total:";
+                e.Row.Cells[2].Style.Add("font-weight", "bold");
+                e.Row.Cells[2].Attributes.Add("align", "right");
+                e.Row.Cells[3].Text = this.total.ToString("c");
+
+            }
+        }
+
+        protected void gvCart_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+
+        }
+
+        protected void gvCart_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            this.gvCart.EditIndex = e.NewEditIndex;
+            this.bindPaymentCartGrid();
+        }
+
+        protected void gvCart_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            DataTable dt = this.cartData;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["Id"].ToString() == e.Keys[0].ToString())
+                {
+                    dr["Months"] = e.NewValues["Months"];
+                }
+            }
+
+            this.cartData = dt;
+            this.gvCart.EditIndex = -1;
+            this.bindPaymentCartGrid();
+
+        }
+
+        protected void gvCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DataTable dt = this.cartData;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["Id"].ToString() == e.Keys[0].ToString())
+                {
+                    dt.Rows.Remove(dt.Rows[i]);
+                }
+            }
+
+            this.cartData = dt;
+            this.bindPaymentCartGrid();
+        }
+
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            this.mvMain.SetActiveView(this.viewPay);
+            this.lblAmount.Text = total.ToString("c");
+            this.populateYears();
+        }
+
+    
+
+        private void populateYears()
+        {
+            this.cmbCcExpYear.Items.Clear();
+            this.cmbCcExpYear.Items.Add(new ListItem("-- Year --", ""));
+            for (int i = 0; i < 15; i++)
+            {
+                int year = DateTime.Now.Year + i;
+                this.cmbCcExpYear.Items.Add(new ListItem(year.ToString(), year.ToString()));
+            }
+        }
+
         private void submitPayment()
         {
             DataFormLoadRequest request = PaymentAddForm.CreateLoadRequest(this.API.AppFxWebServiceProvider);
             request.FormID = new Guid("3e5b7b99-fb01-49d4-9020-c953006b7d0f");
             
-            List<string> giftsToProcess = new List<string>();
-            if (ViewState["selectedSponsorships"] != null)
-            {
-                giftsToProcess = ViewState["selectedSponsorships"] as List<string>;
-            }
-            else
-            {
-                giftsToProcess.Add(ViewState["GiftId"].ToString());
-            }
+            //List<string> giftsToProcess = new List<string>();
+            //if (ViewState["selectedSponsorships"] != null)
+            //{
+            //    giftsToProcess = ViewState["selectedSponsorships"] as List<string>;
+            //}
+            //else
+            //{
+            //    giftsToProcess.Add(ViewState["GiftId"].ToString());
+            //}
 
-            decimal enteredAmount = Convert.ToDecimal(this.txtAmount.Text);
-            decimal amount = enteredAmount / giftsToProcess.Count;
-            decimal runningTotal = 0;
-            amount = Math.Round(amount, 2);
+            //decimal enteredAmount = Convert.ToDecimal(this.lblAmount.Text);
+            //decimal amount = enteredAmount / giftsToProcess.Count;
+            //decimal runningTotal = 0;
+            //amount = Math.Round(amount, 2);
 
-            for (int i=0; i < giftsToProcess.Count; i++)
+            //for (int i=0; i < giftsToProcess.Count; i++)
+            //{
+            //    // if this is the last gift to process, check to see if we need to adjust for rounding
+            //    if (i + 1 == giftsToProcess.Count)
+            //    {
+            //        if (runningTotal + amount != enteredAmount) amount = enteredAmount - runningTotal;
+            //    }
+
+            foreach (DataRow dr in this.cartData.Rows)
             {
-                // if this is the last gift to process, check to see if we need to adjust for rounding
-                if (i + 1 == giftsToProcess.Count)
-                {
-                    if (runningTotal + amount != enteredAmount) amount = enteredAmount - runningTotal;
-                }
-
+                decimal paymentAmount = Convert.ToInt32(dr["Months"]) * Convert.ToDecimal(dr["Amount"]);
+              
                 PaymentAddFormData data = PaymentAddForm.LoadData(this.API.AppFxWebServiceProvider, request);
                 data.CONSTITUENTID = this.API.Users.CurrentUser.BackOfficeGuid;
                 data.DATE = DateTime.Now;
-                data.AMOUNT = amount;
+                data.AMOUNT = paymentAmount;
                 data.PAYMENTMETHODCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.PAYMENTMETHODCODE.Credit_Card;
                 data.APPLICATIONCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.APPLICATIONCODE.Recurring_Gift;
                 data.REVENUESTREAMS = new PaymentAddFormData.REVENUESTREAMS_DATAITEM[1];
                 data.REVENUESTREAMS[0] = new PaymentAddFormData.REVENUESTREAMS_DATAITEM();
                 data.REVENUESTREAMS[0].APPLICATIONCODE_IDVALUE = Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.AddForms.Revenue.PaymentAddFormEnums.REVENUESTREAMS_APPLICATIONCODE.Recurring_Gift;
-                data.REVENUESTREAMS[0].APPLIED = amount;
-                data.REVENUESTREAMS[0].APPLICATIONID = new Guid(giftsToProcess[i]);
+                data.REVENUESTREAMS[0].APPLIED = paymentAmount;
+                data.REVENUESTREAMS[0].APPLICATIONID = new Guid(Convert.ToString(dr["Id"]));
+                //data.REVENUESTREAMS[0].APPLICATIONID = new Guid(giftsToProcess[i]);
                 data.CREDITCARDNUMBER = this.txtCcNumber.Text;
                 data.CARDHOLDERNAME = this.txtCcName.Text;
                 data.EXPIRESON = new Blackbaud.AppFx.FuzzyDate(Convert.ToInt32(this.cmbCcExpYear.SelectedValue), Convert.ToInt32(this.cmbCcExpMonth.SelectedValue));
                 data.CREDITTYPECODEID = Utility.GetCrmCC(this.cmbCcType.SelectedValue);
-                data.RECEIPTAMOUNT = amount;                
+                data.RECEIPTAMOUNT = paymentAmount;                
                 data.SOURCECODE = "BBIS";
                 
                 data.Save(this.API.AppFxWebServiceProvider);
                 
-                runningTotal += amount;
+                //runningTotal += amount;
             }
 
-            ViewState["selectedSponsorships"] = null;
-            ViewState["GiftId"] = null;
+            //ViewState["selectedSponsorships"] = null;
+            //ViewState["GiftId"] = null;
         }
 
         private bool processPayment()
@@ -293,33 +483,41 @@ namespace OCM.BBISWebParts
             payment.AppealID = 1;
             payment.Comments = "";
             
-            List<string> giftsToProcess = new List<string>();
-            if (ViewState["selectedSponsorships"] != null)
+            //List<string> giftsToProcess = new List<string>();
+            //if (ViewState["selectedSponsorships"] != null)
+            //{
+            //    giftsToProcess = ViewState["selectedSponsorships"] as List<string>;
+            //}
+            //else
+            //{
+            //    giftsToProcess.Add(ViewState["GiftId"].ToString());
+            //}
+
+            ////decimal enteredAmount = Convert.ToDecimal(this.txtAmount.Text);
+            //decimal amount = enteredAmount / (giftsToProcess.Count.Equals(0) ? 1 : giftsToProcess.Count);
+            //decimal runningTotal = 0;
+            //amount = Math.Round(amount, 2);
+
+            //for (int i = 0; i < giftsToProcess.Count; i++)
+            //{
+            //    if (i + 1 == giftsToProcess.Count)
+            //    {
+            //        if (runningTotal + amount != enteredAmount) amount = enteredAmount - runningTotal;
+            //    }
+
+            //    int designationId = Utility.GetBbncDesignationId(giftsToProcess[i]);                
+            //    payment.AddDesignationInfo(amount, "BBIS Child Sponsorship Transaction", designationId);
+            //}
+
+
+            foreach (DataRow dr in this.cartData.Rows)
             {
-                giftsToProcess = ViewState["selectedSponsorships"] as List<string>;
-            }
-            else
-            {
-                giftsToProcess.Add(ViewState["GiftId"].ToString());
-            }
-
-            decimal enteredAmount = Convert.ToDecimal(this.txtAmount.Text);
-            decimal amount = enteredAmount / (giftsToProcess.Count.Equals(0) ? 1 : giftsToProcess.Count);
-            decimal runningTotal = 0;
-            amount = Math.Round(amount, 2);
-
-            for (int i = 0; i < giftsToProcess.Count; i++)
-            {
-                if (i + 1 == giftsToProcess.Count)
-                {
-                    if (runningTotal + amount != enteredAmount) amount = enteredAmount - runningTotal;
-                }
-
-                int designationId = Utility.GetBbncDesignationId(giftsToProcess[i]);                
-                payment.AddDesignationInfo(amount, "BBIS Child Sponsorship Transaction", designationId);
+                decimal paymentAmount = Convert.ToInt32(dr["Months"]) * Convert.ToDecimal(dr["Amount"]);
+                int designationId = Utility.GetBbncDesignationId(Convert.ToString(dr["Id"]));
+                payment.AddDesignationInfo(paymentAmount, "BBIS Child Sponsorship Transaction", designationId);
+        
             }
 
-            
             payment.PaymentMethod = BBNCExtensions.API.Transactions.PaymentArgs.ePaymentMethod.CreditCard;
             payment.CreditCardCSC = this.txtCcSecurityCode.Text;
             payment.CreditCardExpirationMonth = Convert.ToInt32(this.cmbCcExpMonth.SelectedValue);
@@ -347,11 +545,6 @@ namespace OCM.BBISWebParts
             }
         }
 
-        protected void lnkBack_Click(object sender, EventArgs e)
-        {
-            this.mvMain.SetActiveView(this.viewSponsorships);
-        }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -369,6 +562,7 @@ namespace OCM.BBISWebParts
                     {
                         this.submitPayment();
                         this.resetForm();
+                        Session.Remove("PaymentCartData");
                         this.lblMessage.Text = MyContent.ThankYouMessage;
                         this.mvMain.SetActiveView(this.viewThankYou);
                     }
@@ -381,14 +575,10 @@ namespace OCM.BBISWebParts
             } 
         }
 
-        protected void lnkPayBack_Click(object sender, EventArgs e)
-        {
-            this.mvMain.SetActiveView(this.viewSponsorships);
-        }
 
         private void resetForm()
         {
-            this.txtAmount.Text = "";
+            this.lblAmount.Text = "";
             this.txtBillingAddress.Text = "";
             this.txtBillingAddress2.Text = "";
             this.txtBillingCity.Text = "";
@@ -429,35 +619,29 @@ namespace OCM.BBISWebParts
             }
         }
 
-        protected void lnkMakePayment_Click(object sender, EventArgs e)
+        protected void lnkBack_Click(object sender, EventArgs e)
         {
-            this.mvMain.SetActiveView(this.viewPay);
-            this.populateYears();
-            List<string> selectedSponsorships = new List<string>();
-            decimal totalPayments = 0;
-            int count = 0;
-            foreach (GridViewRow row in this.gvSponsorships.Rows)
-            {
-                bool isChecked = ((CheckBox)row.FindControl("chkPayment")).Checked;
-                if (isChecked)
-                {
-                    string id = this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"].ToString();
-                    selectedSponsorships.Add(id);
-                    count++;
-                }
-            }
+            this.mvMain.SetActiveView(this.viewSponsorships);
+        }
 
-            totalPayments = count * Utility.GetSponsorshipAmount();
-            this.txtAmount.Text = totalPayments.ToString("c").Replace("$","").Replace(",","");
+        protected void lnkPayBack_Click(object sender, EventArgs e)
+        {
+            bindPaymentCartGrid();  // Not sure why I need to do this.
+            this.mvMain.SetActiveView(this.viewPayments);
+            
+        }
 
-            this.lblSummary.Visible = true;
-            this.lblSummary.Text = "<br /><br /><b>Total payments for selected sponsorships is: " + totalPayments.ToString("c") + "<b><br />";
-            ViewState["selectedSponsorships"] = selectedSponsorships;
+        protected void lnkPayAmountsBack_Click(object sender, EventArgs e)
+        {
+            this.mvMain.SetActiveView(this.viewSponsorships);
         }
 
         protected void lnkThanksBack_Click(object sender, EventArgs e)
         {
             this.mvMain.SetActiveView(this.viewSponsorships);
         }
+
+  
+
     }
 }

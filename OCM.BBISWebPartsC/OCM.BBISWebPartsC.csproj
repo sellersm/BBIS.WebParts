@@ -110,6 +110,7 @@
     <Content Include="Display Parts\MyTransactionManagerDisplay.ascx" />
     <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
+    <Content Include="Display Parts\SponsorshipSearchDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
@@ -119,6 +120,7 @@
     <Content Include="Editor Parts\MyTransactionManagerEdit.ascx" />
     <Content Include="Editor Parts\ProjectProfileEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
+    <Content Include="Editor Parts\SponsorshipSearchEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -191,6 +193,13 @@
     <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipPaymentFormDisplayOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplay2.ascx.cs">
+      <DependentUpon>SponsorshipSearchDisplay2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplay2.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchDisplay2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\SponsorshipSearchDisplayOCM.ascx.cs">
       <DependentUpon>SponsorshipSearchDisplayOCM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +263,13 @@
     <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipPaymentFormEditOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchEdit2.ascx.cs">
+      <DependentUpon>SponsorshipSearchEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchEdit2.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchEdit2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\SponsorshipSearchEditOCM.ascx.cs">
       <DependentUpon>SponsorshipSearchEditOCM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -270,6 +286,7 @@
     <Compile Include="Editor Preferences\MyTransactionManagerOptions.cs" />
     <Compile Include="Editor Preferences\ProjectProfileOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM.cs" />
+    <Compile Include="Editor Preferences\SponsorshipSearchOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipSearchOptionsOCM.cs" />
     <Compile Include="ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>

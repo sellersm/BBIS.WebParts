@@ -12,12 +12,12 @@
         <asp:GridView ID="gvSponsorships" runat="server" AutoGenerateColumns="False" 
         DataKeyNames="RevenueId" onrowdatabound="gvSponsorships_RowDataBound" 
         BorderStyle="None" GridLines="None" HorizontalAlign="Center" Width="100%" 
-        onrowcommand="gvSponsorships_RowCommand">
+        onrowcommand="gvSponsorships_RowCommand" >
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkPayments" runat="server" Text="View Payments" CommandName="ViewPayments" CommandArgument='<%#Eval("RevenueId") %>' /><br /><br />
-                    <asp:LinkButton ID="lnkPay" runat="server" Text="Make Payment" CommandName="MakePayment" CommandArgument='<%#Eval("RevenueId") %>' /><br /><br />
+                    <asp:LinkButton ID="lnkPay" runat="server" Text="Make Payment" CommandName="MakeSinglePayment" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br /><br />
                     <asp:HyperLink ID="lnkEmail" runat="server" Text="Write a Letter" />
                 </ItemTemplate>
             </asp:TemplateField>
@@ -45,7 +45,16 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="Birthdate" HeaderText="Birthdate" >
+            <asp:BoundField DataField="Birthdate" HeaderText="Birthdate" DataFormatString="{0:d}">
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:BoundField>
+            <asp:TemplateField HeaderText="Monthly Amount 2" Visible="false">
+                <ItemTemplate>
+                    <asp:Label ID="lblMonthlyAmount" runat="server" Text='<%# Bind("[MonthlyAmount]") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="MonthlyAmount" HeaderText="Monthly Amount" DataFormatString="{0:C}">
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
@@ -56,8 +65,10 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
+            
         </Columns>
     </asp:GridView>
+        <br />
     <asp:LinkButton ID="lnkMakePayment" runat="server" onclick="lnkMakePayment_Click">Make Payment for Selected Sponsorships</asp:LinkButton>
     </asp:View>
     <asp:View ID="viewPayments" runat="server">
@@ -72,21 +83,80 @@
     
         </asp:GridView>        
     </asp:View>
+    <asp:View ID="viewPayAmounts" runat="server">
+        <asp:LinkButton ID="lnkPayAmountsBack" runat="server" Text="Back" onclick="lnkPayAmountsBack_Click" />
+        <br />
+        <br />
+        <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" 
+            BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" 
+            ShowFooter="True" onrowdatabound="gvCart_RowDataBound" Width="600px" 
+            onrowupdated="gvCart_RowUpdated" DataKeyNames="Id" 
+            onrowediting="gvCart_RowEditing" onrowdeleting="gvCart_RowDeleting" 
+            onrowupdating="gvCart_RowUpdating" style="margin-right: 39px" >
+            <Columns>
+                <asp:TemplateField HeaderText="Child No.">
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Number") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Width="80px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Child's Name">
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Width="160px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="# Months">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtMonths" runat="server" Text='<%# Bind("Months") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("Months") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Width="80px" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Amount">
+                    <ItemTemplate>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Amount", "{0:c}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Width="70px" />            
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="" ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit months" />
+                        &nbsp;<asp:LinkButton ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Remove" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:LinkButton ID="Button1" runat="server" CausesValidation="False" CommandName="Update" Text="Update months" />
+                        &nbsp;<asp:LinkButton ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Remove" />
+                    </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:Button ID="btnCheckout" runat="server" Text="Continue >>" onclick="btnContinue_Click"  />
+                    </FooterTemplate>
+                    <FooterStyle BackColor="#FFBA58" />
+                    <ItemStyle Width="150px" />
+                </asp:TemplateField>
+            </Columns>
+            <HeaderStyle BackColor="#FFBA58" Height="25px" HorizontalAlign="Center" />    
+        </asp:GridView>
+    </asp:View>
     <asp:View ID="viewPay" runat="server">
         <asp:LinkButton ID="lnkPayBack" runat="server" Text="Back" onclick="lnkPayBack_Click" />
+        <br />
+        <br />
         <asp:Label ID="lblSummary" runat="server" Visible="false" />
         <asp:Label ID="lblError" runat="server" ForeColor="Red" />
+        <br />
         <asp:ValidationSummary ID="ValidationSummary1" runat="server"  ValidationGroup="Checkout" />
         <table>
             <tr>
                 <td>
                     <table>
                         <tr>
-                            <td><span id="Span1" class="BBFieldCaption ChildSearchFieldCaption">Amount</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span></td>
+                            <td><span id="Span1" class="BBFieldCaption ChildSearchFieldCaption">Amount</span><span class="NCC_ScholarshipApp_requiredIndicator"></span></td>
                             <td>
-                                <asp:TextBox ID="txtAmount" runat="server" />
-                                <asp:CompareValidator ID="vldAmount" runat="server" ControlToValidate="txtAmount" Operator="DataTypeCheck" Type="Currency" ValidationGroup="Checkout" ErrorMessage="You must enter a dollar amount for Amount field." /> 
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAmount" ErrorMessage="Amount" ForeColor="Red" ValidationGroup="Checkout">*</asp:RequiredFieldValidator>
+                                <asp:label ID="lblAmount" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -594,6 +664,10 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
                 <td><asp:Button ID="btnSubmit" runat="server" Text="Submit Payment" onclick="btnSubmit_Click" ValidationGroup="Checkout" /></td>
             </tr>
         </table>
@@ -601,7 +675,7 @@
     <asp:View ID="viewThankYou" runat="server">
         <asp:Label id="Label1" runat="server" /><br /><br />
         <asp:Label ID="lblMessage" runat="server" /><br /><br />
-        <asp:LinkButton ID="lnkThanksBack" runat="server" Text="Back to My Commitments" 
+        <asp:LinkButton ID="lnkThanksBack" runat="server" Text="Back to My Sponsorships" 
             onclick="lnkThanksBack_Click" />
     </asp:View>
 </asp:MultiView>
