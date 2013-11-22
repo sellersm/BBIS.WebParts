@@ -29,7 +29,7 @@ namespace OCM.BBISWebParts
             set { _linkHtml = value; }
         }
 
-        public string Subject
+        public string SubjectLine
         {
             get { return _subject; }
             set { _subject = value; }

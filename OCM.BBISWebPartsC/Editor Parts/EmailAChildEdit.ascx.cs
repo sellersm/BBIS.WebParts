@@ -46,7 +46,7 @@ namespace OCM.BBISWebParts
                 txtFromAddress.Text = MyContent.FromAddress;
                 txtFromName.Text = MyContent.FromName;
                 txtToAddress.Text = MyContent.ToAddress;  
-                txtSubject.Text = MyContent.Subject;
+                txtSubject.Text = MyContent.SubjectLine;
                 plinkErrorPage.PageID = MyContent.ErrorPageID;
                 plinkSuccessPage.PageID = MyContent.SuccessPageID;              
                 plinkMySponsorshipsPage.PageID = MyContent.MySponsorshipsPageID;
@@ -77,7 +77,7 @@ namespace OCM.BBISWebParts
                 MyContent.ToAddress = txtToAddress.Text;
                 MyContent.FromName = txtFromName.Text;
                 MyContent.LinkHtml = ucHtmlControl.StorageHTML;
-                MyContent.Subject = txtSubject.Text;
+                MyContent.SubjectLine = txtSubject.Text;
                 MyContent.ErrorPageID = plinkErrorPage.PageID;
                 MyContent.SuccessPageID = plinkSuccessPage.PageID;
                 MyContent.MySponsorshipsPageID = plinkMySponsorshipsPage.PageID;

@@ -56,6 +56,18 @@
       <HintPath>..\..\..\SDK\DLLReferences\BBNCExtensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Blackbaud.AppFx, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Blackbaud\bbappfx\vroot\bin\Blackbaud.AppFx.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.WebAPI, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Blackbaud\bbappfx\vroot\bin\Blackbaud.AppFx.WebAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Blackbaud\bbappfx\vroot\bin\Blackbaud.AppFx.XmlTypes.dll</HintPath>
+    </Reference>
     <Reference Include="Blackbaud.Web.Content.Core, Version=6.45.2034.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files\Blackbaud\NetCommunity\Bin\Blackbaud.Web.Content.Core.dll</HintPath>
@@ -100,6 +112,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BBMetalWeb\ConstituentPrimaryAddressOCMViewForm.codegen.vb" />
+    <Compile Include="BBMetalWeb\WebsiteSponsorshipPaymentsDataList.codegen.vb" />
     <Compile Include="Display Parts\ReferrerRecorder.Display.ascx.designer.vb">
       <DependentUpon>ReferrerRecorder.Display.ascx</DependentUpon>
     </Compile>

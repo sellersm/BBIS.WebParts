@@ -47,6 +47,7 @@ namespace OCM.BBISWebParts
                 plinkProjectPage.PageID = MyContent.ProjectPageID;
                 plinkSponsorPage.PageID = MyContent.SponsorPageID;
                 txtBio.Text = MyContent.ChildBioDocType;
+                chkAllowSponsorship.Checked = MyContent.AllowSponsorship;
             }
         }
 
@@ -57,6 +58,7 @@ namespace OCM.BBISWebParts
             MyContent.ProjectPageID = plinkProjectPage.PageID;
             MyContent.SponsorPageID = plinkSponsorPage.PageID;
             MyContent.ChildBioDocType = txtBio.Text;
+            MyContent.AllowSponsorship = chkAllowSponsorship.Checked;
 
             this.Content.SaveContent(MyContent);
 

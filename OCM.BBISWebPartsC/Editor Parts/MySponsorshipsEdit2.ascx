@@ -14,6 +14,10 @@
         <td><uc:PageLink ID="plinkEmailPage" runat="server" /></td>
     </tr>
     <tr>
+        <td>Payment Cart Page ID:</td>
+        <td><uc:PageLink ID="plinkPaymentCartPage" runat="server" /></td>
+    </tr>
+    <tr>
         <td>Demo Mode:</td>
         <td><asp:CheckBox ID="chkDemo" runat="server" /></td>
     </tr>

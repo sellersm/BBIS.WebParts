@@ -98,7 +98,7 @@ namespace OCM.BBISWebParts
                 em.Save();                    
                 em.FromAddress = MyContent.FromAddress;
                 em.FromDisplayName = MyContent.FromName;
-                em.Subject = MyContent.Subject;
+                em.Subject = MyContent.SubjectLine;
                 em.ContentHTML = message.ToString();
                     
                 em.Send(MyContent.ToAddress, MyContent.ToAddress, API.Users.CurrentUser.RaisersEdgeID, API.Users.CurrentUser.UserID, null, this.Page);

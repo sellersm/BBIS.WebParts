@@ -10,16 +10,7 @@
 namespace OCM.BBISWebParts {
     
     
-    public partial class ChildProfileEdit2 {
-        
-        /// <summary>
-        /// txtBio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBio;
+    public partial class WriteALetterChildListEdit {
         
         /// <summary>
         /// txtDocType control.
@@ -29,14 +20,5 @@ namespace OCM.BBISWebParts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDocType;
-        
-        /// <summary>
-        /// chkAllowSponsorship control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAllowSponsorship;
     }
 }

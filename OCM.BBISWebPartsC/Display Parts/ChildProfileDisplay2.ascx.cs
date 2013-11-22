@@ -45,24 +45,15 @@ namespace OCM.BBISWebParts
 
                 if (Request.QueryString["ID"] != null)
                 {
-                    if (Guid.TryParse(Request.QueryString["ID"], out id))
-                    {
-                        bool isSponsored = false;
-
-                        if (Request.QueryString["SPONSORED"] != null)
-                        {
-                            bool.TryParse(Request.QueryString["SPONSORED"], out isSponsored);
-                        }
-
-                        this.SetSponsorshipState(isSponsored);
-                    }
+                    Guid.TryParse(Request.QueryString["ID"], out id);
                 }
 
-                if (id != Guid.Empty || id != null)
+                this.SetSponsorshipState(id != null && id != Guid.Empty);
+
+                if (id != null && id != Guid.Empty)
                 {
                     try
-                    {
-                        //behave differently if they are already sponsored
+                    {                                                
                         this.LoadChildInfo(id);
                     }
                     catch (Exception ex)
@@ -74,16 +65,16 @@ namespace OCM.BBISWebParts
             }
         }
 
-        private void SetSponsorshipState(Boolean isSponsored)
+        private void SetSponsorshipState(bool idParmExists)
         {
-            this.trAmount.Visible = !isSponsored;
-            this.trSponsor.Visible = !isSponsored;
+            this.trAmount.Visible = MyContent.AllowSponsorship & idParmExists;
+            this.lnkSponsor.Visible = MyContent.AllowSponsorship & idParmExists;
         }
 
         private void LoadChildInfo(Guid id)
         {
             SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString);
-            string sql = "SELECT * FROM USR_V_QUERY_SPONSORSHIPOPPORTUNITY WHERE ID = @id";
+            string sql = "SELECT * FROM USR_V_QUERY_SPONSORSHIPOPPORTUNITYINFO WHERE ID = @id";
 
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@id", id);

@@ -21,4 +21,10 @@
         <td>Sponsor Target Page</td>
         <td><uc:PageLink ID="plinkSponsorPage" runat="server" /></td>
     </tr>
+    <tr>
+        <td>Allow Sponsorship?</td>
+        <td><asp:CheckBox ID="chkAllowSponsorship" runat="server" /></td>
+    </tr>
 </table>
+
+

@@ -10,7 +10,9 @@ namespace OCM.BBISWebParts
         private bool _demoMode;
         private string _thankYouMessage;
         private int _emailPageID;
+        private int _paymentCartPageID;
         private int _merchantAccountID;
+
         #endregion
 
         #region Properties
@@ -42,6 +44,12 @@ namespace OCM.BBISWebParts
         {
             get { return _emailPageID; }
             set { _emailPageID = value; }
+        }
+
+        public int PaymentCartPageID
+        {
+            get { return _paymentCartPageID; }
+            set { _paymentCartPageID = value; }
         }
 
         public int MerchantAccountID

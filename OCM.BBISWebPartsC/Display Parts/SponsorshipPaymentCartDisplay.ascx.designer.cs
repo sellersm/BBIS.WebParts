@@ -10,51 +10,33 @@
 namespace OCM.BBISWebParts {
     
     
-    public partial class MySponsorshipsEdit2 {
+    public partial class SponsorshipPaymentCartDisplay {
         
         /// <summary>
-        /// txtDocType control.
+        /// lnkBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDocType;
+        protected global::System.Web.UI.WebControls.LinkButton lnkBack;
         
         /// <summary>
-        /// plinkPaymentCartPage control.
+        /// gvCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Blackbaud.Web.Content.Portal.PageLink plinkPaymentCartPage;
+        protected global::System.Web.UI.WebControls.GridView gvCart;
         
         /// <summary>
-        /// chkDemo control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkDemo;
-        
-        /// <summary>
-        /// ddlMerchantAccounts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMerchantAccounts;
-        
-        /// <summary>
-        /// txtMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMessage;
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

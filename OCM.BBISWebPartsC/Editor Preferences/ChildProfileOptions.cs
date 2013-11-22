@@ -10,6 +10,7 @@ namespace OCM.BBISWebParts
         private int _projectPageID;
         private int _sponsorPageID;
         private string _childBioDocType;
+        private bool _allowSponsorship;
         #endregion
 
         #region Properties
@@ -41,6 +42,12 @@ namespace OCM.BBISWebParts
         {
             get { return _childBioDocType; }
             set { _childBioDocType = value; }
+        }
+
+        public bool AllowSponsorship
+        {
+            get { return _allowSponsorship; }
+            set { _allowSponsorship = value; }
         }
         #endregion
     }

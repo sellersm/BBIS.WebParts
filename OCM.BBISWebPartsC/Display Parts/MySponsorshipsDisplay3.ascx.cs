@@ -21,7 +21,7 @@ using OCM.BBISWebParts.Classes;
 
 namespace OCM.BBISWebParts
 {
-    public partial class MySponsorshipsDisplay2 : BBNCExtensions.Parts.CustomPartDisplayBase
+    public partial class MySponsorshipsDisplay3 : BBNCExtensions.Parts.CustomPartDisplayBase
     {
         private MySponsorshipsOptions2 _myContent;
         private MySponsorshipsOptions2 MyContent
@@ -62,6 +62,7 @@ namespace OCM.BBISWebParts
             string sql = @"
                 SELECT
                     so.ID,
+					sc.ID as ChildID,
                     so.LOOKUPID AS 'Child No',
                     sc.FIRSTNAME + ' ' + sc.LASTNAME AS 'Child Name',
                     dbo.UFN_DATE_FROMFUZZYDATE(sc.BIRTHDATE) AS 'Birthdate',
@@ -157,11 +158,11 @@ namespace OCM.BBISWebParts
                 ((LinkButton)e.Row.FindControl("lnkNo")).PostBackUrl = moreInfoUrl;
                 ((LinkButton)e.Row.FindControl("lnkName")).PostBackUrl = moreInfoUrl;
                 ((ImageButton)e.Row.FindControl("imgThumbnail")).ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["Id"];
-                ((ImageButton)e.Row.FindControl("imgThumbnail")).PostBackUrl = moreInfoUrl;    
-                
-                if(e.Row.FindControl("lnkEmail") != null)
+                ((ImageButton)e.Row.FindControl("imgThumbnail")).PostBackUrl = moreInfoUrl;
+
+				if (e.Row.FindControl("lnkWriteLetter") != null)
                 {
-                    var lnkEmail = (HyperLink)e.Row.FindControl("lnkEmail");
+					var lnkWriteLetter = (HyperLink)e.Row.FindControl("lnkWriteLetter");
 
                     EncryptedQueryString args = new EncryptedQueryString();
                     args["CHILDID"] = row["Child No"].ToString();
@@ -171,7 +172,7 @@ namespace OCM.BBISWebParts
 
                     string emailUrl = string.Concat(Utility.GetBBISPageUrl(MyContent.EmailPageID), string.Format("?args={0}", args.ToString()));
 
-                    lnkEmail.NavigateUrl = emailUrl;
+					lnkWriteLetter.NavigateUrl = emailUrl;
                 }
             }
         }
@@ -180,10 +181,12 @@ namespace OCM.BBISWebParts
         {
             if (e.CommandName == "ViewPayments")
             {
-                LinkButton lnkBtn = (LinkButton)e.CommandSource;    
-                GridViewRow row = (GridViewRow)lnkBtn.Parent.Parent;             
-                ImageButton childThumbnail = (ImageButton)row.FindControl("imgThumbnail");
-                this.bindPayments(e.CommandArgument.ToString(), ((LinkButton)row.FindControl("lnkName")).Text, childThumbnail.ImageUrl);
+                //LinkButton lnkBtn = (LinkButton)e.CommandSource;    
+				//ImageButton lnkBtn = (ImageButton)e.CommandSource;
+                //ImageButton childThumbnail = (ImageButton)row.FindControl("imgThumbnail");
+				int index = Convert.ToInt32(e.CommandArgument);
+				GridViewRow row = this.gvSponsorships.Rows[index];
+				this.bindPayments((this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"].ToString() + "|" + ((Label)row.FindControl("lblChildID")).Text), ((LinkButton)row.FindControl("lnkName")).Text, ((ImageButton)row.FindControl("imgThumbnail")).ImageUrl);
             }
             else if (e.CommandName == "MakeSinglePayment")
             {
@@ -191,7 +194,6 @@ namespace OCM.BBISWebParts
                
                 DataTable dt = cartData;
      
-
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = this.gvSponsorships.Rows[index];
                 DataRow dr = dt.Rows.Find (this.gvSponsorships.DataKeys[row.RowIndex]["RevenueId"]);
@@ -208,6 +210,7 @@ namespace OCM.BBISWebParts
                     dr["Name"] = ((LinkButton)row.FindControl("lnkName")).Text;
                     dr["Amount"] = Convert.ToDecimal(((Label)row.FindControl("lblMonthlyAmount")).Text);
 
+
                     dt.Rows.Add(dr);
                 }
                 cartData = dt;
@@ -222,7 +225,13 @@ namespace OCM.BBISWebParts
                 //this.populateYears();
                 //this.mvMain.SetActiveView(this.viewPay);
                 //this.txtAmount.Text = Utility.GetSponsorshipAmount().ToString("c").Replace("$", "").Replace(",", "");
-            }
+			}
+			else if (e.CommandName == "WriteLetter")
+            {
+				int index = Convert.ToInt32(e.CommandArgument);
+				GridViewRow row = this.gvSponsorships.Rows[index];
+				HttpContext.Current.Response.Redirect(((HyperLink)row.FindControl("lnkWriteLetter")).NavigateUrl);				
+			}
         }
 
 
@@ -230,9 +239,10 @@ namespace OCM.BBISWebParts
         {
             this.mvMain.SetActiveView(this.viewPayments);
             DataListLoadRequest request = RecurringGiftInstallmentHistoryDataList.CreateRequest(this.API.AppFxWebServiceProvider);
-            request.DataListID = new Guid("4d326172-d5d5-4966-a91c-0c0d2b02b155");
+            request.DataListID = new Guid("384fedc7-25b7-4cde-873c-dc26f48178ae"); //"4d326172-d5d5-4966-a91c-0c0d2b02b155");
             request.ContextRecordID = id;
-            RecurringGiftInstallmentHistoryDataListRow[] rows = RecurringGiftInstallmentHistoryDataList.GetRows(this.API.AppFxWebServiceProvider, request);
+			OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataListRow[] rows = OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataList.GetRows(this.API.AppFxWebServiceProvider, request);
+			//RecurringGiftInstallmentHistoryDataListRow[] rows = RecurringGiftInstallmentHistoryDataList.GetRows(this.API.AppFxWebServiceProvider, request);
 
             lblViewPaymentsFor.Text = "Viewing payments for " + childName;
 
@@ -243,8 +253,9 @@ namespace OCM.BBISWebParts
             dt.Columns.Add("AMOUNT");
             dt.Columns.Add("ACTIVITYTYPE");
             dt.Columns.Add("DATESORT");
-            
-            foreach (RecurringGiftInstallmentHistoryDataListRow row in rows)
+
+			foreach (OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataListRow row in rows)
+            //foreach (RecurringGiftInstallmentHistoryDataListRow row in rows)
             {
                 if (row.ACTIVITYTYPE != "Payment") continue;
 
@@ -253,13 +264,13 @@ namespace OCM.BBISWebParts
                 dr["DATE"] = row.DATE.Value.ToString ("MMMM dd, yyyy");
                 dr["AMOUNT"] = row.AMOUNT.ToString("c");
                 dr["ACTIVITYTYPE"] = row.ACTIVITYTYPE;
-                dr["DATESORT"] = row.DATE.Value.ToString ("yyyyMMdd");
+                //dr["DATESORT"] = row.DATE.Value.ToString ("yyyyMMdd");
 
                 dt.Rows.Add(dr);
             }
             
             DataView dv = dt.DefaultView;
-            dv.Sort = "DATESORT desc";
+            //dv.Sort = "DATESORT desc";
             this.gvPayments.DataSource = dv.ToTable();
             this.gvPayments.DataBind();
             //this.gvPayments.Sort("DATE", SortDirection.Descending);

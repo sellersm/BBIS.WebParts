@@ -32,12 +32,20 @@
 		<tr runat="server" id="trAmount">
 			<td><strong>Sponsorship Amount: <asp:Label ID="lblchildSponsorAmount" runat="server" /> USD per month</strong></td>
 		</tr>
-		<tr runat="server" id="trSponsor">
-			<td><strong style="font-size: 12pt"><asp:LinkButton ID="lnkSponsor" runat="server" Text="Sponsor This Child" /></strong></td>
-		</tr>
+        <tr style="height:10px;">
+            <td>&nbsp;</td>
+        </tr> 
         <tr>
-            <td align="right"><asp:LinkButton ID="lnkProject" runat="server" Text="Project Info" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:LinkButton ID="lnkCountry" runat="server" Text="Country Info" />
+                    
+        <td>
+                <table style="width:100%">
+                    <tr>
+                        <td><strong style="font-size: 12pt"><asp:LinkButton ID="lnkSponsor" runat="server" Text="Sponsor This Child" /></strong></td>
+                        <td align="right"><asp:LinkButton ID="lnkProject" runat="server" Text="Project Info" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:LinkButton ID="lnkCountry" runat="server" Text="Country Info" />
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
 	</tbody>

@@ -10,7 +10,7 @@
 namespace OCM.BBISWebParts {
     
     
-    public partial class MySponsorshipsDisplay2 {
+    public partial class MySponsorshipsDisplay3 {
         
         /// <summary>
         /// mvMain control.

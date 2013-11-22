@@ -10,6 +10,8 @@ using Blackbaud.Web.Content.Portal.GivingHistory;
 using Blackbaud.Web.Content.Core;
 using System.Data.SqlClient;
 using System.Data;
+using System.Reflection;
+//using System.Windows.Forms;
 
 namespace OCM.BBISWebParts
 {
@@ -59,9 +61,37 @@ namespace OCM.BBISWebParts
                         {
                             LinkButton lnkHistoryTab = (LinkButton)FindRecursiveControl(this.Page, MyContent.HistoryLinkName);
                             lnkHistoryTab.Visible = false;
+                            
                         }
                     }
+                    //csm code
+
+                    //System.Web.UI.WebControls.Button btnFilter = (System.Web.UI.WebControls.Button)FindRecursiveControl(this.Page, "btnFilter");
+                    //if (btnFilter != null)
+                    // Type t = typeof(System.Web.UI.WebControls.Button);
+                    //object[] p = new object[1];
+                    //p[0] = EventArgs.Empty;
+                    //MethodInfo m = t.GetMethod("OnClick", BindingFlags.NonPublic | BindingFlags.Instance);
+                    //if (m != null)
+                    //{
+                    //    m.Invoke(btnFilter, p);
+                    //}
+    
+                    //System.Web.UI.WebControls.DropDownList datePicker = (System.Web.UI.WebControls.DropDownList)FindRecursiveControl(this.Page, "datePicker");
+                    //datePicker.SelectedIndex = 2;
+
+                    
                 }
+
+				// OCM - csm added code
+				// Hide export drop down until underlying data is fixed.
+
+				//WebControl tabHistoryExportContainer = (WebControl)FindRecursiveControl(this.Page, "ExportContainer");
+				//if (tabHistoryExportContainer != null)
+				//{
+				//    tabHistoryExportContainer.Visible = false;
+				//    tabHistoryExportContainer.Style.Add("display", "none");
+				//}
             }
             catch(Exception ex)
             {

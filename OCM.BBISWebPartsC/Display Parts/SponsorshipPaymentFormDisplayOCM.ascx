@@ -896,6 +896,7 @@
 			                                    <asp:ListItem Value="Concert">Concert/Artist</asp:ListItem>
 			                                    <asp:ListItem Value="Facebook">Facebook</asp:ListItem>
 			                                    <asp:ListItem Value="Friend">Friend</asp:ListItem>
+			                                    <asp:ListItem Value="HeavenlyHomemakers">Heavenly Homemakers</asp:ListItem>
 			                                    <asp:ListItem Value="Internet">Internet</asp:ListItem>
 			                                    <asp:ListItem Value="MinistryRep">Ministry Representative</asp:ListItem>
 			                                    <asp:ListItem Value="Radio">Radio</asp:ListItem>

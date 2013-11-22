@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySponsorshipsDisplay2.ascx.cs" Inherits="OCM.BBISWebParts.MySponsorshipsDisplay2" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySponsorshipsDisplay3.ascx.cs" Inherits="OCM.BBISWebParts.MySponsorshipsDisplay3" %>
 
 <style type="text/css">
     .Validation
@@ -16,14 +16,24 @@
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkPayments" runat="server" Text="View Payments" CommandName="ViewPayments" CommandArgument='<%#Eval("RevenueId") %>'/><br /><br />
-                    <asp:LinkButton ID="lnkPay" runat="server" Text="Make Payment" CommandName="MakeSinglePayment" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br /><br />
-                    <asp:HyperLink ID="lnkEmail" runat="server" Text="Write a Letter" />
+                    <!--<asp:LinkButton ID="lnkPayments" runat="server" Text="View Payments" CommandName="ViewPayments" CommandArgument='<%#Eval("RevenueId") %>'/><br /><br /> 
+					<asp:LinkButton ID="lnkPay" runat="server" Text="Make Payment" CommandName="MakeSinglePayment" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br /><br /> -->
+                    <asp:HyperLink ID="lnkWriteLetter" runat="server" Text="Write a Letter" visible="false"/>
+					<asp:ImageButton ID="imgViewPayments" ImageUrl="~/image/MyAccount_ViewPaymentsButton.jpg" runat="server" CommandName="ViewPayments" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br />
+					<asp:ImageButton ID="imgMakePayment" ImageUrl="~/image/MyAccount_MakeAPaymentsButton.jpg" runat="server" CommandName="MakeSinglePayment" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br />
+					<asp:ImageButton ID="imgWriteLetter" ImageUrl="~/image/MyAccount_WriteALetterButton.jpg" runat="server" CommandName="WriteLetter" CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' /><br />
+                    
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:ImageButton ID="imgThumbnail" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="ChildID" HeaderText="Child ID" Visible="false" />
+            <asp:TemplateField HeaderText="Child ID 2" Visible="false">
+                <ItemTemplate>
+                    <asp:Label ID="lblChildID" runat="server" Text='<%# Bind("[ChildID]") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Child No">

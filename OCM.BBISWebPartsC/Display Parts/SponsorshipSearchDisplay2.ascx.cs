@@ -133,7 +133,7 @@ namespace OCM.BBISWebParts
 
             using(SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString))
             {
-                using(SqlCommand cmd = new SqlCommand("USR_USP_CHILDREN_SEARCH", con))
+                using (SqlCommand cmd = new SqlCommand("USR_USP_CHILDREN_WEBSEARCH", con))
                 {
                     cmd.Parameters.Add(new SqlParameter("@GENDER", GENDER));
                     cmd.Parameters.Add(new SqlParameter("@AGE0", age0));

@@ -7,23 +7,23 @@ using System.Web.UI.WebControls;
 
 namespace OCM.BBISWebParts
 {
-    public partial class MySponsorshipsEdit2 : BBNCExtensions.Parts.CustomPartEditorBase
+    public partial class WriteALetterChildListEdit : BBNCExtensions.Parts.CustomPartEditorBase
     {
         protected Blackbaud.Web.Content.Portal.PageLink plinkMoreInfoPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkEmailPage;
 
-        private MySponsorshipsOptions2 _myContent;
-        private MySponsorshipsOptions2 MyContent
+		private WriteALetterChildListOptions _myContent;
+		private WriteALetterChildListOptions MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (MySponsorshipsOptions2)this.Content.GetContent(typeof(MySponsorshipsOptions2));
+					_myContent = (WriteALetterChildListOptions)this.Content.GetContent(typeof(WriteALetterChildListOptions));
 
                     if (_myContent == null)
                     {
-                        _myContent = new MySponsorshipsOptions2();
+						_myContent = new WriteALetterChildListOptions();
                     }
                 }
 
@@ -35,10 +35,6 @@ namespace OCM.BBISWebParts
         {
             if(!IsPostBack)
             {
-                ddlMerchantAccounts.Items.Clear();
-                BBNCExtensions.API.NetCommunity.Current().Utility.MerchantAccount.LoadListWithMerchantAcccounts(ddlMerchantAccounts, false);
-
-                ddlMerchantAccounts.SelectedValue = MyContent.MerchantAccountID.ToString();   
             }
         }
 
@@ -47,26 +43,18 @@ namespace OCM.BBISWebParts
             if (!IsPostBack)
             {
                 txtDocType.Text = MyContent.ThumbnailNoteType;
-                plinkMoreInfoPage.PageID = MyContent.MoreInfoPageID;
                 plinkEmailPage.PageID = MyContent.EmailPageID;
-				plinkPaymentCartPage.PageID = MyContent.PaymentCartPageID;
-				chkDemo.Checked = MyContent.DemoMode;
-                txtMessage.Text = MyContent.ThankYouMessage;             
             }
         }
 
         public override bool OnSaveContent(bool bDialogIsClosing = true)
         {
             MyContent.ThumbnailNoteType = this.txtDocType.Text;
-            MyContent.MoreInfoPageID = this.plinkMoreInfoPage.PageID;
             MyContent.EmailPageID = this.plinkEmailPage.PageID;
-            MyContent.PaymentCartPageID = this.plinkPaymentCartPage.PageID;
-            MyContent.DemoMode = this.chkDemo.Checked;
-            MyContent.ThankYouMessage = this.txtMessage.Text;
-            MyContent.MerchantAccountID = Convert.ToInt16(ddlMerchantAccounts.SelectedValue);
 
             this.Content.SaveContent(MyContent);
             return true;
         }
+
     }
 }

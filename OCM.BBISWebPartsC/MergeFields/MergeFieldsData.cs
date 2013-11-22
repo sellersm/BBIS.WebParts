@@ -86,13 +86,17 @@ public class MergeFieldsData : Blackbaud.Web.Content.Core.Data.IDataProvider2
                 case MergeFieldsProvider.eMyFields.TOTALCOST:
                     return this._data[rowNum[0]].TotalCost;                    
                 case MergeFieldsProvider.eMyFields.CHILDNAME:
-                    return this._data[rowNum[0]].Children[rowNum[max]].Name;                    
+                    return this._data[rowNum[0]].Children[rowNum[max]].Name;
+                case MergeFieldsProvider.eMyFields.CHILDLOOKUPID:
+                    return this._data[rowNum[0]].Children[rowNum[max]].LookupID;
                 case MergeFieldsProvider.eMyFields.CHILDLOCATION:
                     return this._data[rowNum[0]].Children[rowNum[max]].Location;                    
                 case MergeFieldsProvider.eMyFields.CHILDDOB:
                     return this._data[rowNum[0]].Children[rowNum[max]].DOB;                    
                 case MergeFieldsProvider.eMyFields.CHILDGENDER:
-                    return this._data[rowNum[0]].Children[rowNum[max]].Gender;                                    
+                    return this._data[rowNum[0]].Children[rowNum[max]].Gender;
+                case MergeFieldsProvider.eMyFields.AMOUNT:
+                    return this._data[rowNum[0]].Children[rowNum[max]].Amount;
                 default:
                     break;
             }            
