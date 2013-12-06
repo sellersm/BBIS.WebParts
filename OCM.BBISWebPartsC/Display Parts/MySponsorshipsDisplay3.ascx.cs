@@ -257,7 +257,7 @@ namespace OCM.BBISWebParts
 			foreach (OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataListRow row in rows)
             //foreach (RecurringGiftInstallmentHistoryDataListRow row in rows)
             {
-                if (row.ACTIVITYTYPE != "Payment") continue;
+                if ((row.ACTIVITYTYPE != "Payment") || (row.AMOUNT <= 0))  continue;
 
                 DataRow dr = dt.NewRow();
 

@@ -182,7 +182,8 @@ namespace OCM.BBISWebParts
         //    return new Guid(data.RecordID);
         //}
 
-        private bool processPayment()
+		// csm - changed this to return the auth code instead of bool
+        private string processPayment()
         {
             BBPSPaymentInfo payment = new BBPSPaymentInfo();
 
@@ -213,7 +214,7 @@ namespace OCM.BBISWebParts
             payment.CreditCardExpirationYear = Convert.ToInt32(this.cmbCcExpYear.SelectedValue);
             payment.CreditCardHolderName = this.txtCcName.Text;
             payment.CreditCardNumber = this.txtCcNumber.Text; //VIOLATION of PCI Compliance - as a developer we can by no means ever write code that consumes someones credit card number
-            payment.CreditCardType = (BBNCExtensions.Interfaces.Services.CreditCardType)Enum.Parse(typeof(BBNCExtensions.Interfaces.Services.CreditCardType), this.cmbCcType.SelectedValue);
+            payment.CreditCardType = (BBNCExtensions.Interfaces.Services.CreditCardType)Enum.Parse(typeof(BBNCExtensions.Interfaces.Services.CreditCardType), this.cmbCcType.SelectedValue);			
 
             payment.DonorStreetAddress = this.txtAddress.Text;
             payment.DonorCity = this.txtCity.Text;
@@ -223,16 +224,24 @@ namespace OCM.BBISWebParts
             payment.EmailAddress = this.txtEmail.Text;
             
             BBNCExtensions.API.Transactions.Donations.RecordDonationReply reply = this.API.Transactions.RecordDonation(payment.GeneratePaymentArgs());
+			
 
             if (!payment.InterpretPaymentReply(reply).Success)
             {
                 this.lblError.Visible = true;
                 this.lblError.Text = payment.InterpretPaymentReply(reply).Message;
-                return false;
+                return "";
             }
             else
-            {                                
-                return true;
+            {
+				if ((reply.CreditCardAuthorizationResponse == null) || (reply.CreditCardAuthorizationResponse.AUTHCODE == ""))
+				{ 
+					return "BBPS Success";
+				}
+				else
+				{
+					return reply.CreditCardAuthorizationResponse.AUTHCODE;
+				}
             }
         }
 
@@ -354,15 +363,19 @@ namespace OCM.BBISWebParts
                 {
                     Guid constituentID = this.findConstituent();                    
 
-                    bool redirectToThankYou = false;
-                                        
-                    if (this.processPayment())
+                    //bool redirectToThankYou = false;
+					string authCode = this.processPayment();
+					if (authCode != "")
                     {
-                        this.createSponsorshipPayment(constituentID);
-                        redirectToThankYou = true;
-                    }
+						this.createSponsorshipPayment(constituentID, authCode);
+						// CSM - moved the email and cart data so it only happens if the payment was successfully processed 
+						//redirectToThankYou = true;
+						SendConfirmationEmail(GetMergeData());
+						cartData = null;
+						Utility.RedirectToBBISPage(MyContent.ThankYouPageID);
+					}
                     
-                    
+                    /*
                     SendConfirmationEmail(GetMergeData());
 
                     cartData = null;
@@ -371,6 +384,7 @@ namespace OCM.BBISWebParts
                     {
                         Utility.RedirectToBBISPage(MyContent.ThankYouPageID);
                     }
+					*/
                 }
             }
             catch (Exception ex)
@@ -423,7 +437,7 @@ namespace OCM.BBISWebParts
             return stateID;
         }
 
-        private void createSponsorshipPayment(Guid constituentId)
+        private void createSponsorshipPayment(Guid constituentId, string authCode)
         {
             DataFormLoadRequest request = PaymentAddForm.CreateLoadRequest(this.API.AppFxWebServiceProvider);
             request.FormID = new Guid("3e5b7b99-fb01-49d4-9020-c953006b7d0f");
@@ -473,6 +487,7 @@ namespace OCM.BBISWebParts
                 data.CREDITTYPECODEID = Utility.GetCrmCC(this.cmbCcType.SelectedValue);
                 data.RECEIPTAMOUNT = paymentAmount;
                 data.SOURCECODE = "BBIS";
+				data.AUTHORIZATIONCODE = authCode;
 
                 data.Save(this.API.AppFxWebServiceProvider);
 
