@@ -7,6 +7,7 @@ namespace OCM.BBISWebParts
         #region Fields
         private bool _showActive;
         private bool _showHistory;
+		private bool _autoApply;
         //private bool _showChildInsteadOfDesignation;
         #endregion  
 
@@ -47,6 +48,18 @@ namespace OCM.BBISWebParts
                 _showHistory = value;
             }
         }
+
+		public bool AutoApply
+		{
+			get
+			{
+				return _autoApply;
+			}
+			set
+			{
+				_autoApply = value;
+			}
+		}
 
         public string ActiveViewName 
         {
@@ -102,6 +115,7 @@ namespace OCM.BBISWebParts
                 }
             }
         }
-        #endregion
+
+       #endregion
     }
 }

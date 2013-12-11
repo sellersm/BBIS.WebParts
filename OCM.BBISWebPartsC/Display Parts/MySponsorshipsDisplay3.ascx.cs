@@ -50,6 +50,7 @@ namespace OCM.BBISWebParts
                 {
                     this.bindSponsorships();
                     //Session.Remove("PaymentCartData");
+					this.lnkBack.Text = "Back to List";
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace OCM.BBISWebParts
 
 
             string sql = @"
-                SELECT
+ 				SELECT DISTINCT					
                     so.ID,
 					sc.ID as ChildID,
                     so.LOOKUPID AS 'Child No',
@@ -70,7 +71,7 @@ namespace OCM.BBISWebParts
                     r.ID AS 'RevenueId',
                     c.NAME as 'SPONSORNAME',
                     c.LOOKUPID as 'SPONSORID',
-                  case 
+					case 
 						when r_sch.FREQUENCYCODE = 0 then r.AMOUNT / 12 --annually
 						when r_sch.FREQUENCYCODE = 1 then r.AMOUNT / 6 --6mo
 						when r_sch.FREQUENCYCODE = 2 then r.AMOUNT / 3 --qtr
@@ -84,10 +85,45 @@ namespace OCM.BBISWebParts
                     INNER JOIN REVENUESPLIT rs ON s.REVENUESPLITID = rs.ID
                     INNER JOIN REVENUE r ON rs.REVENUEID = r.ID
                     INNER JOIN REVENUESCHEDULE r_sch on  r.id = r_sch.id
-                    left join CONSTITUENT C on s.CONSTITUENTID = c.ID
+                    INNER JOIN CONSTITUENT c on c.ID = s.CONSTITUENTID	
+                    
                 WHERE
-	                s.CONSTITUENTID = @Id
-	                AND s.STATUS = 'Active'";
+	                c.ID = @Id
+	                AND s.STATUS = 'Active'
+	            
+	            UNION
+
+				SELECT DISTINCT					
+                    so.ID,
+					sc.ID as ChildID,
+                    so.LOOKUPID AS 'Child No',
+                    sc.FIRSTNAME + ' ' + sc.LASTNAME AS 'Child Name',
+                    dbo.UFN_DATE_FROMFUZZYDATE(sc.BIRTHDATE) AS 'Birthdate',
+                    sc.AGE AS 'Age',
+                    r.ID AS 'RevenueId',
+                    c.NAME as 'SPONSORNAME',
+                    c.LOOKUPID as 'SPONSORID',
+					case 
+						when r_sch.FREQUENCYCODE = 0 then r.AMOUNT / 12 --annually
+						when r_sch.FREQUENCYCODE = 1 then r.AMOUNT / 6 --6mo
+						when r_sch.FREQUENCYCODE = 2 then r.AMOUNT / 3 --qtr
+						when r_sch.FREQUENCYCODE = 3 then r.AMOUNT -- 'mo'
+						else r.AMOUNT
+					end as MonthlyAmount
+                FROM
+                    SPONSORSHIP s
+                    INNER JOIN SPONSORSHIPOPPORTUNITY so ON s.SPONSORSHIPOPPORTUNITYID = so.ID
+                    INNER JOIN SPONSORSHIPOPPORTUNITYCHILD sc ON so.ID = sc.ID
+                    INNER JOIN REVENUESPLIT rs ON s.REVENUESPLITID = rs.ID
+                    INNER JOIN REVENUE r ON rs.REVENUEID = r.ID
+                    INNER JOIN REVENUESCHEDULE r_sch on  r.id = r_sch.id
+                    INNER JOIN CONSTITUENT c on c.ID = r.CONSTITUENTID	
+                WHERE
+	                c.ID = @Id
+	                and s.CONSTITUENTID <> @Id
+	                AND s.STATUS = 'Active'
+	            
+	            order by 'Child Name'";
 
             using(SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString))
             {
@@ -141,6 +177,12 @@ namespace OCM.BBISWebParts
 
             this.gvSponsorships.DataSource = dt;
             this.gvSponsorships.DataBind();
+			// Hide the make selected payments link if there are no sponsorships
+			if (dt.Rows.Count == 0)
+			{
+				lnkMakePayment.Visible = false;
+			}
+
         }
 
         protected void gvSponsorships_RowDataBound(object sender, GridViewRowEventArgs e)

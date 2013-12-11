@@ -58,8 +58,8 @@ namespace OCM.BBISWebParts
             DataTable dt = new DataTable();
 
 
-            string sql = @"
-                SELECT
+			string sql = @"
+                SELECT DISTINCT					
                     so.ID,
 					sc.ID as ChildID,
                     so.LOOKUPID AS 'Child No',
@@ -83,10 +83,11 @@ namespace OCM.BBISWebParts
                     INNER JOIN REVENUESPLIT rs ON s.REVENUESPLITID = rs.ID
                     INNER JOIN REVENUE r ON rs.REVENUEID = r.ID
                     INNER JOIN REVENUESCHEDULE r_sch on  r.id = r_sch.id
-                    left join CONSTITUENT C on s.CONSTITUENTID = c.ID
+                    INNER JOIN CONSTITUENT c on s.CONSTITUENTID = c.ID
                 WHERE
-	                s.CONSTITUENTID = @Id
-	                AND s.STATUS = 'Active'";
+	                c.ID = @Id
+	                AND s.STATUS = 'Active'
+	            ORDER BY [Child Name]";
 
             using(SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString))
             {

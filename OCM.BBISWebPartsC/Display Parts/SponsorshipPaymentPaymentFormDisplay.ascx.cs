@@ -236,7 +236,7 @@ namespace OCM.BBISWebParts
             {
 				if ((reply.CreditCardAuthorizationResponse == null) || (reply.CreditCardAuthorizationResponse.AUTHCODE == ""))
 				{ 
-					return "BBPS Success";
+					return "Success-NoAuthCode";
 				}
 				else
 				{

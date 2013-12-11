@@ -24,10 +24,10 @@
 			<td><strong>Project:</strong>&nbsp; <asp:Label ID="lblchildProject" runat="server" /></td>
 		</tr>
 		<tr>
-			<td><strong>Child No.:</strong>&nbsp; <asp:Label ID="lblchildNumber" runat="server" /></td>
+			<td><strong>Child ID:</strong>&nbsp; <asp:Label ID="lblchildNumber" runat="server" /></td>
 		</tr>
 		<tr>
-			<td><strong>Description:&nbsp; </strong><asp:Label ID="lblchildBio" runat="server" /><br></td>
+			<td><asp:Label ID="lblchildBio" runat="server" /><br></td>
 		</tr>
 		<tr runat="server" id="trAmount">
 			<td><strong>Sponsorship Amount: <asp:Label ID="lblchildSponsorAmount" runat="server" /> USD per month</strong></td>

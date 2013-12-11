@@ -30,13 +30,14 @@
                     <asp:ImageButton ID="imgThumbnail" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="ChildID" HeaderText="Child ID" Visible="false" />
+            <asp:BoundField DataField="ChildID" HeaderText="Child ID guid" 
+				Visible="false" />
             <asp:TemplateField HeaderText="Child ID 2" Visible="false">
                 <ItemTemplate>
                     <asp:Label ID="lblChildID" runat="server" Text='<%# Bind("[ChildID]") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Child No">
+            <asp:TemplateField HeaderText="Child ID">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkNo" runat="server" Text='<%# Bind("[Child No]") %>' />
                 </ItemTemplate>
@@ -79,7 +80,7 @@
         </Columns>
     </asp:GridView>
         <br />
-    <asp:LinkButton ID="lnkMakePayment" runat="server" onclick="lnkMakePayment_Click">Make Payment for Selected Sponsorships</asp:LinkButton>
+	<div style="width:100%; text-align:right"><asp:LinkButton ID="lnkMakePayment" runat="server" onclick="lnkMakePayment_Click" >Make Payment for Selected Sponsorships</asp:LinkButton></div>
     </asp:View>
     <asp:View ID="viewPayments" runat="server">
         <asp:LinkButton ID="lnkBack" runat="server" Text="Back to list" onclick="lnkBack_Click" />
