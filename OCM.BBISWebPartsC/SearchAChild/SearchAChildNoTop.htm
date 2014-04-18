@@ -1,0 +1,278 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search A Child</title>
+    <style type="text/css">
+        body
+        {
+            margin-top:10px;
+        }
+
+        .sponsorAChildNoTop,
+        .sponsorAChildWithoutTop,
+        .sponsorAChildWithTop
+        {
+            background-image: url('http://www.onechildmatters.org/image/searchachild/background3.png');
+            background-repeat: no-repeat;
+            padding-left: 0px;
+            width:140px;
+            height:280px;
+        }
+
+            .sponsorAChildNoTop{
+            background-image: url('http://www.onechildmatters.org/image/searchachild/blackboxtab2.png');
+        }
+        .sponsorAChildWithTop
+        {
+            margin-top:-18px;
+        }
+
+        .label,
+        .button,
+        .dropdownList
+        {
+            margin-left:12px;
+        }
+
+        .button,
+        .dropdownList
+        {
+            width:116px;
+        }
+
+        .label
+        {
+            color:White;
+            font-size:1.06em;
+            font-weight:bolder;
+        }
+
+        .button
+        {
+            background-image: url('http://www.onechildmatters.org/image/searchachild/button.jpg');
+            margin-top:15px;
+            Height:20px;
+            Font-Weight:bolder;
+            text-align:center;
+        }
+        .button:hover
+        {
+            background-image: url('http://www.onechildmatters.org/image/searchachild/button_hover.jpg');
+        }
+        .dropdownList
+        {            
+            font-family:Helvetica;
+            font-size:12px;
+        }
+
+        .labelNoTop,
+        .buttonNoTop,
+        .dropdownListNoTop
+        {
+            margin-left:10px;
+        }
+
+        .buttonNoTop,
+        .dropdownListNoTop
+        {
+            width:110px;
+        }
+
+        .labelNoTop
+        {
+            color:White;
+            font-size:1.06em;
+            font-weight:bolder;
+        }
+
+        .buttonNoTop
+        {
+            background-image: url('http://www.onechildmatters.org/image/searchachild/button.jpg');
+            margin-top:15px;
+            Height:20px;
+            Font-Weight:bolder;
+            text-align:center;
+        }
+        .buttonNoTop:hover
+        {
+            background-image: url('http://www.onechildmatters.org/image/searchachild/button_hover.jpg');
+        }
+        .dropdownListNoTop
+        {            
+            font-family:Helvetica;
+            font-size:12px;
+        }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        var sUrl = "";
+        //alert('hostname: ' + sUrl);
+        var sChildCatalogUrl = "child-sponsorship-search";
+        var sQueryString = "";
+        var sRedirectPath = "";
+        $(document).ready(function () {
+
+
+            $('#btnSearch').click(function () {
+
+                sQueryString = getQueryString();
+
+                if (sQueryString.length > 0) {
+                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1);
+
+                }
+                else {
+                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl;
+                }
+
+                $(location).attr('href', sUrl);
+
+            });
+
+            $('#btnChooseForMe').click(function () {
+
+                sQueryString = getQueryString();
+
+                if (sQueryString.length > 0) {
+                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1) + '&ChooseForMe=Y';
+                    //alert('with querstring: ' + sUrl);
+                }
+                else {
+                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?ChooseForMe=Y';
+                    //alert('without querstring: ' + sUrl);
+                }
+
+                $(location).attr('href', sUrl);
+
+            });
+
+
+            function getQueryString() {
+                var sQueryString = "";
+
+                if ($("#selectAge option:selected").val() != "All") {
+                    sQueryString = '&Age=' + $("#selectAge option:selected").text();
+
+                }
+                if ($("#selectGender option:selected").val() != "Either") {
+                    sQueryString += '&Gender=' + $("#selectGender option:selected").text()
+                }
+                if ($("#selectCountry option:selected").val() != "All") {
+                    sQueryString += '&Country=' + $("#selectCountry option:selected").text()
+                }
+                return sQueryString;
+            }
+
+        });
+    </script>
+</head>
+<body>
+    <div class="sponsorAChildNoTop">
+        <br />
+        <label id="lblAge"  class="labelNoTop" for="Age">Age</label><br />
+        <select id="selectAge" class="dropdownListNoTop">
+        <option value="All">All</option>
+        <option value="0-5">0-5</option>
+        <option value="6-10">6-10</option>
+        <option value="11-15">11-15</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        </select>
+        <br />
+        <label id="lblGender" class="labelNoTop" for="Gender">Gender</label><br />
+        <select id="selectGender" class="dropdownListNoTop">
+        <option value="Either">Either</option>
+        <option value="Girl">Girl</option>
+        <option value="Boy">Boy</option>
+        </select>
+        <br />
+        <label id="lblCountry" class="labelNoTop" for="Country">Country</label><br />
+        <select id="selectCountry" class="dropdownListNoTop">
+        <option value="All">All</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="Cambodia">Cambodia</option>
+        <option value="Dominican Republic">Dominican Republic</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Haiti">Haiti</option>
+        <option value="Honduras">Honduras</option>
+        <option value="India">India</option>
+        <option value="Jordan">Jordan</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Lebanon">Lebanon</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Nepal">Nepal</option>
+        <option value="Nicaragua">Nicaragua</option>
+        <option value="Philippines">Philippines</option>
+        <option value="Swaziland">Swaziland</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+        <br />
+        <input id="btnSearch" type="button" value="Search" class="buttonNoTop"/><br />
+        <input id="btnChooseForMe" type="button" value="Choose For Me" class="buttonNoTop"/>
+    </div>
+    
+    <script type="text/jscript">
+        var sUrl = window.location.href;
+
+        $(document).ready(function () {
+
+            SetTheValues();
+
+            function SetTheValues() {
+                var sAge = getQueryStringParm('Age');
+
+                if (sAge != '') {
+                    $("select#selectAge").val(sAge);
+
+                }
+                else {
+                    $("select#selectAge").val('All');
+
+                }
+                var sGender = getQueryStringParm('Gender');
+                if (sGender != '')
+                    $("select#selectGender").val(sGender);
+                else
+                    $("select#selectGender").val('All');
+                var sCountry = getQueryStringParm('Country');
+                if (sCountry != '')
+                    $("select#selectCountry").val(sCountry);
+                else
+                    $("select#selectCountry").val('All');
+            }
+
+            function getQueryStringParm(name) {
+                var returnVal = '';
+                name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+                var regexS = '[\\?&]' + name + '=([^&#]*)';
+                var regex = new RegExp(regexS);
+                var results = regex.exec(sUrl);
+                if (results != null)
+                    returnVal = results[1];
+
+                return returnVal;
+            }
+
+
+        });
+    </script>
+
+
+
+    <div>
+        
+    </div>
+</body>
+</html>
