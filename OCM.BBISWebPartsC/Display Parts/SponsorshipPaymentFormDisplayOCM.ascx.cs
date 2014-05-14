@@ -19,7 +19,7 @@ namespace OCM.BBISWebParts
     public partial class SponsorshipPaymentFormDisplayOCM : BBNCExtensions.Parts.CustomPartDisplayBase
     {
         private const string c_Referrer = "REFERRER";
-		private const int c_ReferenceMaxLengh = 255;
+		private const int c_ReferenceMaxLength = 255;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -464,7 +464,11 @@ namespace OCM.BBISWebParts
                 data.HASCONDITIONCODE_IDVALUE = Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.AddForms.Sponsorship.SponsorshipAddFormEnums.HASCONDITIONCODE.No;
                 data.ISORPHANEDCODE_IDVALUE = Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.AddForms.Sponsorship.SponsorshipAddFormEnums.ISORPHANEDCODE.No;                
                 data.GIFTRECIPIENT = false;
-				data.REFERENCE = ((Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString()) + "; " + cmbHearAbout.SelectedValue.ToString() + "-" + txtHearAboutResponse.Text).Substring(0, c_ReferenceMaxLengh);
+				data.REFERENCE = ((Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString()) + "; " + cmbHearAbout.SelectedValue.ToString() + "-" + txtHearAboutResponse.Text);
+				if (data.REFERENCE.Length > c_ReferenceMaxLength)
+				{
+					data.REFERENCE = data.REFERENCE.Substring(0, c_ReferenceMaxLength);
+				}
                 data.Save(this.API.AppFxWebServiceProvider);
             }
 
