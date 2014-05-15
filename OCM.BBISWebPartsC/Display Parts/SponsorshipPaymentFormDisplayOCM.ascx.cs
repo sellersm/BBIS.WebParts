@@ -19,13 +19,18 @@ namespace OCM.BBISWebParts
     public partial class SponsorshipPaymentFormDisplayOCM : BBNCExtensions.Parts.CustomPartDisplayBase
     {
         private const string c_Referrer = "REFERRER";
+		private const int c_ReferenceMaxLength = 255;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                SponsorshipPaymentFormOptionsOCM options = (SponsorshipPaymentFormOptionsOCM)this.Content.GetContent(typeof(SponsorshipPaymentFormOptionsOCM));
-               lblReferrer.Text = "v2 - " + (Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString());
+			   if (options.DemoMode)
+			   {
+				   Session[c_Referrer] += "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+			   }
+               lblReferrer.Text = "v3 - " + (Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString()) ;
                lblReferrer.Visible = options.DemoMode;
          
                 if (this.total == 0)
@@ -459,8 +464,11 @@ namespace OCM.BBISWebParts
                 data.HASCONDITIONCODE_IDVALUE = Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.AddForms.Sponsorship.SponsorshipAddFormEnums.HASCONDITIONCODE.No;
                 data.ISORPHANEDCODE_IDVALUE = Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.AddForms.Sponsorship.SponsorshipAddFormEnums.ISORPHANEDCODE.No;                
                 data.GIFTRECIPIENT = false;
-                data.REFERENCE = (Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString())+ "; " + cmbHearAbout.SelectedValue.ToString() + "-" + txtHearAboutResponse.Text; 
-
+				data.REFERENCE = ((Session[c_Referrer] == null ? String.Empty : Session[c_Referrer].ToString()) + "; " + cmbHearAbout.SelectedValue.ToString() + "-" + txtHearAboutResponse.Text);
+				if (data.REFERENCE.Length > c_ReferenceMaxLength)
+				{
+					data.REFERENCE = data.REFERENCE.Substring(0, c_ReferenceMaxLength);
+				}
                 data.Save(this.API.AppFxWebServiceProvider);
             }
 

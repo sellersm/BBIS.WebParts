@@ -18,6 +18,10 @@
         <td><uc:PageLink ID="plinkPaymentCartPage" runat="server" /></td>
     </tr>
     <tr>
+        <td>Video Page ID:</td>
+        <td><uc:PageLink ID="plinkVideoPage" runat="server" /></td>
+    </tr>
+    <tr>
         <td>Demo Mode:</td>
         <td><asp:CheckBox ID="chkDemo" runat="server" /></td>
     </tr>

@@ -96,6 +96,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -113,30 +114,74 @@
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
     <Content Include="Display Parts\EmailAChildDisplay.ascx" />
+    <Content Include="Display Parts\GivingCatalogDisplay.ascx" />
+    <Content Include="Display Parts\GivingCatalogItemDetailDisplay.ascx" />
     <Content Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx" />
+    <Content Include="Display Parts\MySponsoredChildMediaDisplay.ascx" />
     <Content Include="Display Parts\MySponsorshipsDisplay2.ascx" />
     <Content Include="Display Parts\MySponsorshipsDisplay3.ascx" />
     <Content Include="Display Parts\MyTransactionManagerDisplay.ascx" />
     <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
+    <Content Include="custom\ChildSponsorship2\SearchAChild.ascx" />
+    <Content Include="Display Parts\ShoppingCartCheckoutDisplay.ascx" />
+    <Content Include="Display Parts\ShoppingCartDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentCartDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentPaymentFormDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
+    <Content Include="Display Parts\SponsorshipSearchDisplayOcmPartners.ascx" />
+    <Content Include="Display Parts\SponsorshipSearchDisplayPFM.ascx" />
+    <Content Include="Display Parts\TrucmaiTestPage.aspx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\CommonUseEdit.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
     <Content Include="Editor Parts\EmailAChildEdit.ascx" />
+    <Content Include="Editor Parts\GivingCatalogEdit.ascx" />
+    <Content Include="Editor Parts\GivingCatalogItemDetailEdit.ascx" />
     <Content Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx" />
     <Content Include="Editor Parts\MySponsorshipsEdit2.ascx" />
     <Content Include="Editor Parts\MyTransactionManagerEdit.ascx" />
     <Content Include="Editor Parts\ProjectProfileEdit2.ascx" />
+    <Content Include="Editor Parts\ShoppingCartEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentCartEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentPaymentFormEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
+    <Content Include="Editor Parts\SponsorshipSearchEditOCMPartners.ascx" />
     <Content Include="Editor Parts\WriteALetterChildListEdit.ascx" />
+    <Content Include="HomePage Slider\HomePage_Slider.htm" />
+    <Content Include="HomePage Slider\MoM_Html Source Template.htm" />
+    <Content Include="images\AddAChildBox.jpg" />
+    <Content Include="images\amex.png" />
+    <Content Include="images\BlackBoxTab2.png" />
+    <Content Include="images\cart_icon.png" />
+    <Content Include="images\discover.png" />
+    <Content Include="images\header-blue-gradiant.png" />
+    <Content Include="images\image 10.jpg" />
+    <Content Include="images\image 21.jpg" />
+    <Content Include="images\image 86.png" />
+    <Content Include="images\image 87.jpg" />
+    <Content Include="images\lock1.png" />
+    <Content Include="images\mastercard.png" />
+    <Content Include="images\paypal_icon.jpg" />
+    <Content Include="images\SponsorArrowButton.jpg" />
+    <Content Include="images\SponsorArrowButtonHover.jpg" />
+    <Content Include="images\t1.png" />
+    <Content Include="images\t3.png" />
+    <Content Include="images\t7.png" />
+    <Content Include="images\visa_icon.png" />
+    <Content Include="SearchAChild\HTMLPage1.htm" />
+    <Content Include="SearchAChild\HTMLPage2.htm" />
+    <Content Include="SearchAChild\SearchAChildToAdd.htm" />
+    <Content Include="SearchAChild\SearchAChildToSponsor.htm" />
+    <Content Include="SearchAChild\SearchAChildNoTop.htm" />
+    <Content Include="Styles\MoM.css" />
+    <Content Include="Styles\SearchAChild.css" />
+    <Content Include="Styles\ShoppingCart.css" />
+    <Content Include="Styles\Shopping_Cart.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -173,12 +218,33 @@
     <Compile Include="Display Parts\EmailAChildDisplay.ascx.designer.cs">
       <DependentUpon>EmailAChildDisplay.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\GivingCatalogDisplay.ascx.cs">
+      <DependentUpon>GivingCatalogDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\GivingCatalogDisplay.ascx.designer.cs">
+      <DependentUpon>GivingCatalogDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\GivingCatalogItemDetailDisplay.ascx.cs">
+      <DependentUpon>GivingCatalogItemDetailDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\GivingCatalogItemDetailDisplay.ascx.designer.cs">
+      <DependentUpon>GivingCatalogItemDetailDisplay.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx.cs">
       <DependentUpon>MyFinancialCommitmentsDisplay2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx.designer.cs">
       <DependentUpon>MyFinancialCommitmentsDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\MySponsoredChildMediaDisplay.ascx.cs">
+      <DependentUpon>MySponsoredChildMediaDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\MySponsoredChildMediaDisplay.ascx.designer.cs">
+      <DependentUpon>MySponsoredChildMediaDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\MySponsorshipsDisplay2.ascx.cs">
       <DependentUpon>MySponsorshipsDisplay2.ascx</DependentUpon>
@@ -207,6 +273,27 @@
     </Compile>
     <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="custom\ChildSponsorship2\SearchAChild.ascx.cs">
+      <DependentUpon>SearchAChild.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="custom\ChildSponsorship2\SearchAChild.ascx.designer.cs">
+      <DependentUpon>SearchAChild.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\ShoppingCartCheckoutDisplay.ascx.cs">
+      <DependentUpon>ShoppingCartCheckoutDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\ShoppingCartCheckoutDisplay.ascx.designer.cs">
+      <DependentUpon>ShoppingCartCheckoutDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\ShoppingCartDisplay.ascx.cs">
+      <DependentUpon>ShoppingCartDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\ShoppingCartDisplay.ascx.designer.cs">
+      <DependentUpon>ShoppingCartDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentCartDisplay.ascx.cs">
       <DependentUpon>SponsorshipPaymentCartDisplay.ascx</DependentUpon>
@@ -243,6 +330,27 @@
     <Compile Include="Display Parts\SponsorshipSearchDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchDisplayOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplayOcmPartners.ascx.cs">
+      <DependentUpon>SponsorshipSearchDisplayOcmPartners.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplayOcmPartners.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchDisplayOcmPartners.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplayPFM.ascx.cs">
+      <DependentUpon>SponsorshipSearchDisplayPFM.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchDisplayPFM.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchDisplayPFM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\TrucmaiTestPage.aspx.cs">
+      <DependentUpon>TrucmaiTestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\TrucmaiTestPage.aspx.designer.cs">
+      <DependentUpon>TrucmaiTestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\WriteALetterChildListDisplay.ascx.cs">
       <DependentUpon>WriteALetterChildListDisplay.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +365,13 @@
     <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
       <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\CommonUseEdit.ascx.cs">
+      <DependentUpon>CommonUseEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\CommonUseEdit.ascx.designer.cs">
+      <DependentUpon>CommonUseEdit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\CountryProfileEdit2.ascx.cs">
       <DependentUpon>CountryProfileEdit2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -270,6 +385,20 @@
     </Compile>
     <Compile Include="Editor Parts\EmailAChildEdit.ascx.designer.cs">
       <DependentUpon>EmailAChildEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\GivingCatalogEdit.ascx.cs">
+      <DependentUpon>GivingCatalogEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\GivingCatalogEdit.ascx.designer.cs">
+      <DependentUpon>GivingCatalogEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\GivingCatalogItemDetailEdit.ascx.cs">
+      <DependentUpon>GivingCatalogItemDetailEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\GivingCatalogItemDetailEdit.ascx.designer.cs">
+      <DependentUpon>GivingCatalogItemDetailEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx.cs">
       <DependentUpon>MyFinancialCommitmentsEdit2.ascx</DependentUpon>
@@ -298,6 +427,13 @@
     </Compile>
     <Compile Include="Editor Parts\ProjectProfileEdit2.ascx.designer.cs">
       <DependentUpon>ProjectProfileEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\ShoppingCartEdit.ascx.cs">
+      <DependentUpon>ShoppingCartEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\ShoppingCartEdit.ascx.designer.cs">
+      <DependentUpon>ShoppingCartEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentCartEdit.ascx.cs">
       <DependentUpon>SponsorshipPaymentCartEdit.ascx</DependentUpon>
@@ -334,6 +470,13 @@
     <Compile Include="Editor Parts\SponsorshipSearchEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchEditOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchEditOCMPartners.ascx.cs">
+      <DependentUpon>SponsorshipSearchEditOCMPartners.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchEditOCMPartners.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchEditOCMPartners.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\WriteALetterChildListEdit.ascx.cs">
       <DependentUpon>WriteALetterChildListEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,7 +485,11 @@
       <DependentUpon>WriteALetterChildListEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Preferences\ChildProfileOptions.cs" />
+    <Compile Include="Editor Preferences\CommonUseOptions.cs" />
     <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
+    <Compile Include="Editor Preferences\GivingCatalogItemDetailOptions.cs" />
+    <Compile Include="Editor Preferences\GivingCatalogOptions.cs" />
+    <Compile Include="Editor Preferences\SponsorshipSearchOptionOcmPartners.cs" />
     <Compile Include="Editor Preferences\WriteALetterChildListOptions.cs" />
     <Compile Include="Editor Preferences\CountryProfileOptions.cs" />
     <Compile Include="Editor Preferences\EmailAChildOptions.cs" />
@@ -396,6 +543,8 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat
+xcopy C:\MissionOfMercy\CRM\Source\OCM.BBISWebParts\OCM.BBISWebPartsC\bin\OCM.BBISWebPartsC.dll  C:\Program Files\Blackbaud\NetCommunity\Bin\OCM.BBISWebPartsC.dll
+xcopy C:\MissionOfMercy\CRM\Source\OCM.BBISWebParts\OCM.BBISWebPartsC\Display Parts\GivingCatalogDisplay.ascx  C:\Program Files\Blackbaud\NetCommunity\Custom\ChildSponsorship2\GivingCatalogDisplay.ascx
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

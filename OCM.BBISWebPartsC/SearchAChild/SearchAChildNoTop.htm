@@ -113,17 +113,24 @@
         var sRedirectPath = "";
         $(document).ready(function () {
 
+            //var currentUrl = $(location).attr('href');
+
+            //if (currentUrl.indexOf("%20") >=0)
+            //{
+            //$('#selectCountry').val("Dominican Republic");
+            //$('#selectCountry option').removeAttr('selected');
+            //$("#selectCountry option[value='Dominican Republic']").attr('selected',true);
+            //}
 
             $('#btnSearch').click(function () {
-
                 sQueryString = getQueryString();
 
                 if (sQueryString.length > 0) {
-                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1);
+                    sUrl = window.location.protocol + '//' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1);
 
                 }
                 else {
-                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl;
+                    sUrl = window.location.protocol + '//' + window.location.hostname + '/' + sChildCatalogUrl;
                 }
 
                 $(location).attr('href', sUrl);
@@ -135,12 +142,14 @@
                 sQueryString = getQueryString();
 
                 if (sQueryString.length > 0) {
-                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1) + '&ChooseForMe=Y';
-                    //alert('with querstring: ' + sUrl);
+                    // sUrl =  window.location.protocol + '//' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1,sQueryString.length-1) + '&ChooseForMe=Y';
+
+                    sUrl = window.location.protocol + '//' + window.location.hostname + '/' + sChildCatalogUrl + '?' + sQueryString.substr(1, sQueryString.length - 1) + '&ChooseForMe=Y';
                 }
                 else {
-                    sUrl = 'https://' + window.location.hostname + '/' + sChildCatalogUrl + '?ChooseForMe=Y';
-                    //alert('without querstring: ' + sUrl);
+                    // sUrl =   window.location.protocol + '//' + window.location.hostname  + '/' + sChildCatalogUrl + '?ChooseForMe=Y';
+                    sUrl = window.location.protocol + '//' + window.location.hostname + '/' + sChildCatalogUrl + '?ChooseForMe=Y';
+
                 }
 
                 $(location).attr('href', sUrl);
@@ -151,16 +160,20 @@
             function getQueryString() {
                 var sQueryString = "";
 
-                if ($("#selectAge option:selected").val() != "All") {
-                    sQueryString = '&Age=' + $("#selectAge option:selected").text();
+                if ($('#selectAge option:selected').val() != "All") {
+                    sQueryString = '&Age=' + $('#selectAge option:selected').text();
 
                 }
-                if ($("#selectGender option:selected").val() != "Either") {
-                    sQueryString += '&Gender=' + $("#selectGender option:selected").text()
+                if ($('#selectGender option:selected').val() != "Either") {
+                    sQueryString += '&Gender=' + $('#selectGender option:selected').text();
                 }
-                if ($("#selectCountry option:selected").val() != "All") {
-                    sQueryString += '&Country=' + $("#selectCountry option:selected").text()
+                if ($('#selectCountry option:selected').val() != "All") {
+                    //sQueryString += '&Country=' + ($("#selectCountry option:selected").text()).replace(" ", "%20")
+                    sQueryString += '&Country=' + $('#selectCountry option:selected').text();
                 }
+
+                sQueryString = sQueryString.replace(" ", "%20");
+
                 return sQueryString;
             }
 
@@ -223,9 +236,9 @@
         <input id="btnChooseForMe" type="button" value="Choose For Me" class="buttonNoTop"/>
     </div>
     
-    <script type="text/jscript">
-        var sUrl = window.location.href;
-
+    <script type="text/javascript">
+        var sUrl = window.location.href; //window.location.protocol + '//' + window.location.host; 
+        //alert('bottom: ' + sUrl);
         $(document).ready(function () {
 
             SetTheValues();
@@ -246,9 +259,16 @@
                     $("select#selectGender").val(sGender);
                 else
                     $("select#selectGender").val('All');
+
                 var sCountry = getQueryStringParm('Country');
-                if (sCountry != '')
-                    $("select#selectCountry").val(sCountry);
+                if (sCountry != '') {
+                    if (sCountry.indexOf("%20") >= 0) {
+                        sCountry = sCountry.replace("%20", " ");
+                        $("select#selectCountry").val(sCountry);
+                    }
+                    else
+                        $("select#selectCountry").val(sCountry);
+                }
                 else
                     $("select#selectCountry").val('All');
             }
@@ -267,7 +287,7 @@
 
 
         });
-    </script>
+</script>
 
 
 

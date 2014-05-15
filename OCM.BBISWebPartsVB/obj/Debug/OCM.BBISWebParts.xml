@@ -1,0 +1,104 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+OCM.BBISWebParts
+</name>
+</assembly>
+<members>
+<member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewForm.SpecId">
+	<summary>
+ The Spec ID value for the "Constituent Primary Address OCM View Form" ViewForm
+ </summary>
+</member><member name="T:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewForm">
+	<summary>
+ Provides WebApi access to the "Constituent Primary Address OCM View Form" catalog feature.  Used for viewing a constituent's primary address.
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.HASADDRESS">
+	<summary>
+ HASADDRESS
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.POSTCODE">
+	<summary>
+ Postcode
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.ADDRESSBLOCK">
+	<summary>
+ Address
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.CITY">
+	<summary>
+ City
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.STATEID">
+	<summary>
+ StateID
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.STATEABBREV">
+	<summary>
+ State Abbreviation
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.STATEDESC">
+	<summary>
+ State Description
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.COUNTRYID">
+	<summary>
+ Country
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.ISUSADDRESS">
+	<summary>
+ ISUSADDRESS
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.PHONENUMBER">
+	<summary>
+ Phone
+ </summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData.EMAILADDRESS">
+	<summary>
+ Email
+ </summary>
+</member><member name="T:OCM.BBISWebParts.OCM.BBISWebParts.ConstituentPrimaryAddressOCMViewFormData">
+	<summary>
+ Represents the data form field values in the "Constituent Primary Address OCM View Form" data form.
+ </summary>
+</member><member name="F:OCM.BBISWebParts.ReferrerRecorder_Editor.cbDisplayReferrer">
+	<summary>
+cbDisplayReferrer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:OCM.BBISWebParts.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:OCM.BBISWebParts.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:OCM.BBISWebParts.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:OCM.BBISWebParts.OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataList.SpecId">
+	<summary>
+ The DataList ID value for the "Website Sponsorship Payments Data List" datalist
+ </summary>
+</member><member name="T:OCM.BBISWebParts.OCM.BBISWebParts.WebsiteSponsorshipPaymentsDataList">
+	<summary>
+ Provides WebApi access to the "Website Sponsorship Payments Data List" catalog feature.  Used to display the payments for a particular child on the website.
+ </summary>
+</member><member name="F:OCM.BBISWebParts.ReferrerRecorder_Display.lblReferrer">
+	<summary>
+lblReferrer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

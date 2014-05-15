@@ -132,6 +132,7 @@ namespace OCM.BBISWebParts
 				((LinkButton)e.Row.FindControl("lnkNo")).PostBackUrl = emailUrl;
 				((LinkButton)e.Row.FindControl("lnkName")).PostBackUrl = emailUrl;
                 ((ImageButton)e.Row.FindControl("imgThumbnail")).ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["Id"];
+                string temp = ((ImageButton)e.Row.FindControl("imgThumbnail")).ImageUrl;
 				((ImageButton)e.Row.FindControl("imgThumbnail")).PostBackUrl = emailUrl;    
                 
             }
