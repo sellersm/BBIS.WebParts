@@ -12,6 +12,7 @@ namespace OCM.BBISWebParts
         private int _emailPageID;
         private int _paymentCartPageID;
         private int _merchantAccountID;
+        private int _videoPageID;
 
         #endregion
 
@@ -56,6 +57,12 @@ namespace OCM.BBISWebParts
         {
             get { return this._merchantAccountID; }
             set { this._merchantAccountID = value; }
+        }
+
+        public int VideoPageID
+        {
+            get { return this._videoPageID; }
+            set { this._videoPageID = value; }
         }
         #endregion
     }

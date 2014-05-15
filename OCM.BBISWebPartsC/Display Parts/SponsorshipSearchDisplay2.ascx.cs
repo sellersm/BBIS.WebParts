@@ -156,11 +156,11 @@ namespace OCM.BBISWebParts
             return dt;
         }
 
-        private int bindSearchResults(bool fromEvent, bool forceRefresh = false)
+        private int bindSearchResults(bool forceRefresh = false)
         {
             DataTable dt = null;
             
-            if(fromEvent && !forceRefresh)
+            if(!forceRefresh)
             {
                 dt = BBSession.Retrieve<DataTable>("CHILDREN");
             }
@@ -203,11 +203,11 @@ namespace OCM.BBISWebParts
             return dt.Rows.Count;
         }
 
-        private int bindSearchResults(bool forceRefresh = false)
+/*        private int bindSearchResults(bool forceRefresh = false)
         {
-            return bindSearchResults(false, forceRefresh);
+            return bindSearchResults(true, forceRefresh);
         }
-
+*/
         private void bindNav(int totalRecords)
         {
             int numberofPages = totalRecords / MyContent.ResultsPerPage;
@@ -284,7 +284,7 @@ namespace OCM.BBISWebParts
                 this.currentPage++;
             }
 
-            this.bindSearchResults(true);
+            this.bindSearchResults(false);
         }
 
         protected void lnkPrevious_Click(object sender, EventArgs e)
@@ -292,14 +292,14 @@ namespace OCM.BBISWebParts
             if (this.currentPage != 0)
             {
                 this.currentPage--;
-                this.bindSearchResults(true);
+                this.bindSearchResults(false);
             }
         }
 
         protected void lnkFirst_Click(object sender, EventArgs e)
         {
             this.currentPage = 0;
-            this.bindSearchResults(true);
+            this.bindSearchResults(false);
         }
 
         protected void lnkLast_Click(object sender, EventArgs e)
@@ -314,7 +314,7 @@ namespace OCM.BBISWebParts
             }
 
             this.currentPage = currPage;
-            this.bindSearchResults(true);
+            this.bindSearchResults(false);
         }
 
         protected void cmbPages_SelectedIndexChanged(object sender, EventArgs e)

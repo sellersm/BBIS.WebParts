@@ -52,6 +52,14 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Child Video">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkVideo" runat="server" Text="Watch" Enabled="false"/>
+                </ItemTemplate>
+                <FooterStyle HorizontalAlign="Center" />
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:BoundField DataField="Age" HeaderText="Age" >
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
