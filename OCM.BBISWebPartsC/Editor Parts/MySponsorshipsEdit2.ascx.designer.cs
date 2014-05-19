@@ -31,15 +31,6 @@ namespace OCM.BBISWebParts {
         protected global::Blackbaud.Web.Content.Portal.PageLink plinkPaymentCartPage;
         
         /// <summary>
-        /// plinkVideoPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Blackbaud.Web.Content.Portal.PageLink plinkVideoPage;
-        
-        /// <summary>
         /// chkDemo control.
         /// </summary>
         /// <remarks>

@@ -36,34 +36,6 @@ namespace OCM.BBISWebParts
 	                CONSTITUENTID = @ID
 	                AND t.DESCRIPTION = @TYPE";
 
-        private string givingCatalogQuery = @"
-                SELECT
-                    [FILE]
-                FROM
-                    dbo.USR_GIVINGCATALOG a
-	                INNER JOIN SPROPPATTACHMENTTYPECODE t ON t.ID = a.SPROPPATTACHMENTTYPECODEID
-                WHERE 
-	                (a.ID = @ID or a.relatedimageid = @ID)
-	                AND t.DESCRIPTION = @TYPE";
-
-        private string ChildMedia = @"
-                SELECT
-                    count(*)
-                FROM
-                    dbo.SPONSORSHIPOPPORTUNITYATTACHMENT a
-	                INNER JOIN SPROPPATTACHMENTTYPECODE t ON t.ID = a.SPROPPATTACHMENTTYPECODEID
-                WHERE 
-	                SPONSORSHIPOPPORTUNITYID = @ID
-	                AND t.DESCRIPTION = @TYPE";
-
-        private string emailImageQuery = @"
-                SELECT
-                    [FILE]
-                FROM
-                    dbo.USR_MyAccountEmailImage 
-                WHERE 
-	                ID = @ID";
-
         public override void ProcessRequest(HttpContext context)
         {
             string recordId = context.Request.QueryString["id"].ToString();
@@ -74,26 +46,15 @@ namespace OCM.BBISWebParts
 
             string sql = "";
 
-            if (contextType.ToLower() == "sponsorship")
+            if (contextType == "sponsorship")
             {
                 sql = this.sponsorshipQuery;
             }
-            else if (contextType.ToLower() == "constituent")
+            else if (contextType == "constituent")
             {
                 sql = this.constituentQuery;
             }
-            else if (contextType.ToLower() == "givingcatalog")
-            {
-                sql = this.givingCatalogQuery;
-            }
-            else if (contextType.ToLower() == "video")
-            {
-                sql = this.ChildMedia;
-            }
-            else if (contextType.ToLower() == "email")
-            {
-                sql = this.emailImageQuery;
-            }
+
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("ID", recordId);

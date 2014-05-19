@@ -51,8 +51,7 @@ namespace OCM.BBISWebParts
                 plinkEmailPage.PageID = MyContent.EmailPageID;
 				plinkPaymentCartPage.PageID = MyContent.PaymentCartPageID;
 				chkDemo.Checked = MyContent.DemoMode;
-                txtMessage.Text = MyContent.ThankYouMessage;
-                plinkVideoPage.PageID = MyContent.VideoPageID;
+                txtMessage.Text = MyContent.ThankYouMessage;             
             }
         }
 
@@ -65,7 +64,6 @@ namespace OCM.BBISWebParts
             MyContent.DemoMode = this.chkDemo.Checked;
             MyContent.ThankYouMessage = this.txtMessage.Text;
             MyContent.MerchantAccountID = Convert.ToInt16(ddlMerchantAccounts.SelectedValue);
-            MyContent.VideoPageID = this.plinkVideoPage.PageID;
 
             this.Content.SaveContent(MyContent);
             return true;
