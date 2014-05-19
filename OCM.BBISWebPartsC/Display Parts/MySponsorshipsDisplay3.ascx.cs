@@ -185,35 +185,6 @@ namespace OCM.BBISWebParts
 
         }
 
-        private int CheckChildVideo(string type, string ID)
-        {
-            int sVideoCount = 0;
-
-            string sql = @"
-                SELECT
-                    count(*)
-                FROM
-                    dbo.SPONSORSHIPOPPORTUNITYMEDIALINK a
-                    INNER JOIN dbo.SPROPPMEDIALINKTYPECODE t ON t.ID = a.SPROPPMEDIALINKTYPECODEID
-                WHERE 
-	                SPONSORSHIPOPPORTUNITYID = @ID
-	                AND t.DESCRIPTION = @TYPE";
-
-            SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString);
-
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("ID", ID);
-            cmd.Parameters.AddWithValue("TYPE", type);
-
-            con.Open();
-            sVideoCount = (int)cmd.ExecuteScalar();
-            con.Close();
-            
-            return sVideoCount;
-        }
-
-
         protected void gvSponsorships_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -230,16 +201,6 @@ namespace OCM.BBISWebParts
                 ((LinkButton)e.Row.FindControl("lnkName")).PostBackUrl = moreInfoUrl;
                 ((ImageButton)e.Row.FindControl("imgThumbnail")).ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["Id"];
                 ((ImageButton)e.Row.FindControl("imgThumbnail")).PostBackUrl = moreInfoUrl;
-
-                int sVideoUrl = CheckChildVideo("webpage", row["Id"].ToString());
-                if (sVideoUrl > 0)
-                {
-                    string urlVideoPage = Utility.GetBBISPageUrl(MyContent.VideoPageID);
-                    string moreInfoUrlVideo = urlVideoPage + "{0}id=" + row["ID"];
-                    moreInfoUrlVideo = moreInfoUrlVideo.IndexOf("?") > -1 ? String.Format(moreInfoUrlVideo, "&") : String.Format(moreInfoUrlVideo, "?");
-                    ((LinkButton)e.Row.FindControl("lnkVideo")).PostBackUrl = moreInfoUrlVideo;
-                    ((LinkButton)e.Row.FindControl("lnkVideo")).Enabled = true;
-                }
 
 				if (e.Row.FindControl("lnkWriteLetter") != null)
                 {
