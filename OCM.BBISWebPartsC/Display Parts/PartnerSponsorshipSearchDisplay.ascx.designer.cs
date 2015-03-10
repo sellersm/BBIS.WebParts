@@ -10,7 +10,7 @@
 namespace OCM.BBISWebParts {
     
     
-    public partial class SponsorshipSearchPartnerDisplay {
+    public partial class PartnerSponsorshipSearchDisplay {
         
         /// <summary>
         /// rptSearch control.

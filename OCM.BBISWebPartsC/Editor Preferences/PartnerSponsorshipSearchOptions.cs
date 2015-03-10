@@ -2,7 +2,7 @@
 
 namespace OCM.BBISWebParts
 {
-    public class SponsorshipSearchPartnerOptions
+	public class PartnerSponsorshipSearchOptions
     {
         #region Fields
         private string _thumbnailNoteType;

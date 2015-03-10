@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SponsorshipSearchPartnerDisplay.ascx.cs" Inherits="OCM.BBISWebParts.SponsorshipSearchPartnerDisplay" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PartnerSponsorshipSearchDisplay.ascx.cs" Inherits="OCM.BBISWebParts.PartnerSponsorshipSearchDisplay" %>
 
 
 <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound">
