@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
+    <Content Include="Display Parts\PartnerChildProfileDisplay.ascx" />
     <Content Include="Display Parts\RateIncreaseReversalFormDisplay.ascx" />
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
     <Content Include="Display Parts\EmailAChildDisplay.ascx" />
@@ -136,6 +137,7 @@
     <Content Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\PartnerChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\RateIncreaseReversalFormEdit.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
     <Content Include="Editor Parts\EmailAChildEdit.ascx" />
@@ -173,6 +175,13 @@
     </Compile>
     <Compile Include="Display Parts\ChildProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\PartnerChildProfileDisplay.ascx.cs">
+      <DependentUpon>PartnerChildProfileDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\PartnerChildProfileDisplay.ascx.designer.cs">
+      <DependentUpon>PartnerChildProfileDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\RateIncreaseReversalFormDisplay.ascx.cs">
       <DependentUpon>RateIncreaseReversalFormDisplay.ascx</DependentUpon>
@@ -300,6 +309,13 @@
     <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
       <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\PartnerChildProfileEdit2.ascx.cs">
+      <DependentUpon>PartnerChildProfileEdit2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\PartnerChildProfileEdit2.ascx.designer.cs">
+      <DependentUpon>PartnerChildProfileEdit2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\RateIncreaseReversalFormEdit.ascx.cs">
       <DependentUpon>RateIncreaseReversalFormEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,6 +430,7 @@
     </Compile>
     <Compile Include="Editor Preferences\ChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
+    <Compile Include="Editor Preferences\PartnerChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\RateIncreaseReversalFormOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipCartPartnerOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM2.cs" />

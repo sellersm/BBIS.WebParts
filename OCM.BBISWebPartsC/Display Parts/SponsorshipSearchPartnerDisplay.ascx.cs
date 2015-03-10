@@ -186,6 +186,7 @@ namespace OCM.BBISWebParts
 			dt.Columns.Add("CHILDNO");
 			dt.Columns.Add("ELIGIBILITY");
 			dt.Columns.Add("AVAILABILITY");
+			dt.Columns.Add("IMAGEURL");
 
 			OCM.BBISWebParts.WebsiteChurchPartnerChildSearchDataListFilterData filter = new OCM.BBISWebParts.WebsiteChurchPartnerChildSearchDataListFilterData() ;
 			
@@ -219,6 +220,7 @@ namespace OCM.BBISWebParts
 				dr["CHILDNO"] = row.CHILDNO;
 				dr["ELIGIBILITY"] = row.ELIGIBILITY;
 				dr["AVAILABILITY"] = row.AVAILABILITY;
+				dr["IMAGEURL"] = "custom/ChildSponsorship2/ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row.ID;
 
 				dt.Rows.Add(dr);
 			}
@@ -284,6 +286,7 @@ namespace OCM.BBISWebParts
 */
         private void bindNav(int totalRecords)
         {
+			
             int numberofPages = totalRecords / MyContent.ResultsPerPage;
             
             if (totalRecords % MyContent.ResultsPerPage > 0)
@@ -339,21 +342,32 @@ namespace OCM.BBISWebParts
                 string moreInfoUrl = Utility.GetBBISPageUrl(MyContent.MoreInfoPageID) + "{0}id=" + row["ID"];
                 string sponsorUrl = Utility.GetBBISPageUrl(MyContent.SponsorPageID) + "{0}id=" + row["ID"];
 
-                moreInfoUrl = moreInfoUrl.IndexOf("?") > -1 ? String.Format(moreInfoUrl, "&") : String.Format(moreInfoUrl, "?");
+
+				System.Web.UI.HtmlControls.HtmlGenericControl childPhoto = (System.Web.UI.HtmlControls.HtmlGenericControl)e.Item.FindControl("childPhoto1");
+				if (childPhoto == null)
+				{
+					childPhoto = (System.Web.UI.HtmlControls.HtmlGenericControl)e.Item.FindControl("childPhoto2");
+				}
+
+				if (childPhoto != null)
+				{
+					childPhoto.Attributes.Add("style", "background-image:url('" + row["IMAGEURL"] + "');"); 
+				}
+
+				moreInfoUrl = moreInfoUrl.IndexOf("?") > -1 ? String.Format(moreInfoUrl, "&") : String.Format(moreInfoUrl, "?");
                 sponsorUrl = sponsorUrl.IndexOf("?") > -1 ? String.Format(sponsorUrl, "&") : String.Format(sponsorUrl, "?");
 
-                ((LinkButton)e.Item.FindControl("lnkMoreInfo")).PostBackUrl = moreInfoUrl;
-                ((LinkButton)e.Item.FindControl("lnkSponsor")).PostBackUrl = sponsorUrl;
+				((LinkButton)e.Item.FindControl("lnkMoreInfo")).PostBackUrl = moreInfoUrl;
+				//((LinkButton)e.Item.FindControl("lnkSponsor")).PostBackUrl = sponsorUrl;
 
-                ((ImageButton)e.Item.FindControl("imgThumbnail")).ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["ID"];
-                ((ImageButton)e.Item.FindControl("imgThumbnail")).PostBackUrl = moreInfoUrl;                   
+				//((ImageButton)e.Item.FindControl("imgThumbnail")).ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["ID"];
+				//((ImageButton)e.Item.FindControl("imgThumbnail")).PostBackUrl = moreInfoUrl;                   
         
                 // ***
                 // Added by David Song 01.21.15 
-                // ***
-
-                string childImageUrl = "/custom/ChildSponsorship2/ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["ID"];                
-                
+				// string childImageUrl = "/custom/ChildSponsorship2/ImageHandler.ashx?context=sponsorship&type=" + MyContent.ThumbnailNoteType + "&id=" + row["ID"];                
+				// ***
+ 
             }
         }
 
