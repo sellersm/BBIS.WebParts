@@ -134,7 +134,7 @@
     <Content Include="Display Parts\SponsorshipPaymentPaymentFormDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
-    <Content Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx" />
+    <Content Include="Display Parts\PartnerSponsorshipSearchDisplay.ascx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\PartnerChildProfileEdit2.ascx" />
@@ -288,12 +288,12 @@
     <Compile Include="Display Parts\SponsorshipSearchDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchDisplayOCM.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx.cs">
-      <DependentUpon>SponsorshipSearchPartnerDisplay.ascx</DependentUpon>
+    <Compile Include="Display Parts\PartnerSponsorshipSearchDisplay.ascx.cs">
+      <DependentUpon>PartnerSponsorshipSearchDisplay.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx.designer.cs">
-      <DependentUpon>SponsorshipSearchPartnerDisplay.ascx</DependentUpon>
+    <Compile Include="Display Parts\PartnerSponsorshipSearchDisplay.ascx.designer.cs">
+      <DependentUpon>PartnerSponsorshipSearchDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\WriteALetterChildListDisplay.ascx.cs">
       <DependentUpon>WriteALetterChildListDisplay.ascx</DependentUpon>
@@ -434,7 +434,7 @@
     <Compile Include="Editor Preferences\RateIncreaseReversalFormOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipCartPartnerOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM2.cs" />
-    <Compile Include="Editor Preferences\SponsorshipSearchPartnerOptions.cs" />
+    <Compile Include="Editor Preferences\PartnerSponsorshipSearchOptions.cs" />
     <Compile Include="Editor Preferences\WriteALetterChildListOptions.cs" />
     <Compile Include="Editor Preferences\CountryProfileOptions.cs" />
     <Compile Include="Editor Preferences\EmailAChildOptions.cs" />

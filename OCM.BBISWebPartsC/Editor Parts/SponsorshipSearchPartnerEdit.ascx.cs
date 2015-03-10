@@ -12,18 +12,18 @@ namespace OCM.BBISWebParts
         protected Blackbaud.Web.Content.Portal.PageLink plinkMoreInfoTargetPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkSponsorTargetPage;
 
-		private SponsorshipSearchPartnerOptions _myContent;
-		private SponsorshipSearchPartnerOptions MyContent
+		private PartnerSponsorshipSearchOptions _myContent;
+		private PartnerSponsorshipSearchOptions MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-					_myContent = (SponsorshipSearchPartnerOptions)this.Content.GetContent(typeof(SponsorshipSearchPartnerOptions));
+					_myContent = (PartnerSponsorshipSearchOptions)this.Content.GetContent(typeof(PartnerSponsorshipSearchOptions));
 
                     if (_myContent == null)
                     {
-						_myContent = new SponsorshipSearchPartnerOptions();
+						_myContent = new PartnerSponsorshipSearchOptions();
                     }
                 }
 
