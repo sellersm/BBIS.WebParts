@@ -58,6 +58,10 @@
       <HintPath>..\..\..\SDK 2.93\DLLReferences\Blackbaud.AppFx.Fundraising.Catalog.WebApiClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Blackbaud.AppFx.Platform.Catalog.WebApiClient, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SDK\DLLReferences\Blackbaud.AppFx.Platform.Catalog.WebApiClient.dll</HintPath>
+    </Reference>
     <Reference Include="Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SDK\DLLReferences\Blackbaud.AppFx.Sponsorship.Catalog.WebApiClient.dll</HintPath>
@@ -89,6 +93,9 @@
       <HintPath>..\..\..\..\..\Program Files\Blackbaud\NetCommunity\Bin\Blackbaud.Web.Content.Portal.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MoM.Common.MetalWeb">
+      <HintPath>..\..\..\References\MoM\MoM.Common.MetalWeb.dll</HintPath>
+    </Reference>
     <Reference Include="OCM.BBISWebParts">
       <HintPath>..\OCM.BBISWebPartsVB\bin\OCM.BBISWebParts.dll</HintPath>
     </Reference>
@@ -111,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
+    <Content Include="Display Parts\RateIncreaseReversalFormDisplay.ascx" />
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
     <Content Include="Display Parts\EmailAChildDisplay.ascx" />
     <Content Include="Display Parts\MyFinancialCommitmentsDisplay2.ascx" />
@@ -118,24 +126,31 @@
     <Content Include="Display Parts\MySponsorshipsDisplay3.ascx" />
     <Content Include="Display Parts\MyTransactionManagerDisplay.ascx" />
     <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
+    <Content Include="Display Parts\SponsorshipCartPartnerDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentCartDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
+    <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM2.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentPaymentFormDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplay2.ascx" />
     <Content Include="Display Parts\SponsorshipSearchDisplayOCM.ascx" />
+    <Content Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\RateIncreaseReversalFormEdit.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
     <Content Include="Editor Parts\EmailAChildEdit.ascx" />
     <Content Include="Editor Parts\MyFinancialCommitmentsEdit2.ascx" />
     <Content Include="Editor Parts\MySponsorshipsEdit2.ascx" />
     <Content Include="Editor Parts\MyTransactionManagerEdit.ascx" />
     <Content Include="Editor Parts\ProjectProfileEdit2.ascx" />
+    <Content Include="Editor Parts\SponsorshipCartPartnerEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentCartEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx" />
+    <Content Include="Editor Parts\SponsorshipPaymentFormEditOCM2.ascx" />
     <Content Include="Editor Parts\SponsorshipPaymentPaymentFormEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
+    <Content Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx" />
     <Content Include="Editor Parts\WriteALetterChildListEdit.ascx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -158,6 +173,13 @@
     </Compile>
     <Compile Include="Display Parts\ChildProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\RateIncreaseReversalFormDisplay.ascx.cs">
+      <DependentUpon>RateIncreaseReversalFormDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\RateIncreaseReversalFormDisplay.ascx.designer.cs">
+      <DependentUpon>RateIncreaseReversalFormDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\CountryProfileDisplay2.ascx.cs">
       <DependentUpon>CountryProfileDisplay2.ascx</DependentUpon>
@@ -208,6 +230,13 @@
     <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\SponsorshipCartPartnerDisplay.ascx.cs">
+      <DependentUpon>SponsorshipCartPartnerDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipCartPartnerDisplay.ascx.designer.cs">
+      <DependentUpon>SponsorshipCartPartnerDisplay.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentCartDisplay.ascx.cs">
       <DependentUpon>SponsorshipPaymentCartDisplay.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -221,6 +250,13 @@
     </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipPaymentFormDisplayOCM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM2.ascx.cs">
+      <DependentUpon>SponsorshipPaymentFormDisplayOCM2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipPaymentFormDisplayOCM2.ascx.designer.cs">
+      <DependentUpon>SponsorshipPaymentFormDisplayOCM2.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\SponsorshipPaymentPaymentFormDisplay.ascx.cs">
       <DependentUpon>SponsorshipPaymentPaymentFormDisplay.ascx</DependentUpon>
@@ -243,6 +279,13 @@
     <Compile Include="Display Parts\SponsorshipSearchDisplayOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchDisplayOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx.cs">
+      <DependentUpon>SponsorshipSearchPartnerDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SponsorshipSearchPartnerDisplay.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchPartnerDisplay.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\WriteALetterChildListDisplay.ascx.cs">
       <DependentUpon>WriteALetterChildListDisplay.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,6 +299,13 @@
     </Compile>
     <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
       <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\RateIncreaseReversalFormEdit.ascx.cs">
+      <DependentUpon>RateIncreaseReversalFormEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\RateIncreaseReversalFormEdit.ascx.designer.cs">
+      <DependentUpon>RateIncreaseReversalFormEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\CountryProfileEdit2.ascx.cs">
       <DependentUpon>CountryProfileEdit2.ascx</DependentUpon>
@@ -299,6 +349,13 @@
     <Compile Include="Editor Parts\ProjectProfileEdit2.ascx.designer.cs">
       <DependentUpon>ProjectProfileEdit2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\SponsorshipCartPartnerEdit.ascx.cs">
+      <DependentUpon>SponsorshipCartPartnerEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipCartPartnerEdit.ascx.designer.cs">
+      <DependentUpon>SponsorshipCartPartnerEdit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentCartEdit.ascx.cs">
       <DependentUpon>SponsorshipPaymentCartEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -312,6 +369,13 @@
     </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipPaymentFormEditOCM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM2.ascx.cs">
+      <DependentUpon>SponsorshipPaymentFormEditOCM2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipPaymentFormEditOCM2.ascx.designer.cs">
+      <DependentUpon>SponsorshipPaymentFormEditOCM2.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\SponsorshipPaymentPaymentFormEdit.ascx.cs">
       <DependentUpon>SponsorshipPaymentPaymentFormEdit.ascx</DependentUpon>
@@ -334,6 +398,13 @@
     <Compile Include="Editor Parts\SponsorshipSearchEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchEditOCM.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx.cs">
+      <DependentUpon>SponsorshipSearchPartnerEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx.designer.cs">
+      <DependentUpon>SponsorshipSearchPartnerEdit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Editor Parts\WriteALetterChildListEdit.ascx.cs">
       <DependentUpon>WriteALetterChildListEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -343,6 +414,10 @@
     </Compile>
     <Compile Include="Editor Preferences\ChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
+    <Compile Include="Editor Preferences\RateIncreaseReversalFormOptions.cs" />
+    <Compile Include="Editor Preferences\SponsorshipCartPartnerOptions.cs" />
+    <Compile Include="Editor Preferences\SponsorshipPaymentFormOptionsOCM2.cs" />
+    <Compile Include="Editor Preferences\SponsorshipSearchPartnerOptions.cs" />
     <Compile Include="Editor Preferences\WriteALetterChildListOptions.cs" />
     <Compile Include="Editor Preferences\CountryProfileOptions.cs" />
     <Compile Include="Editor Preferences\EmailAChildOptions.cs" />

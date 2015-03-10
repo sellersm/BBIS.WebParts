@@ -113,6 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBMetalWeb\ConstituentPrimaryAddressOCMViewForm.codegen.vb" />
+    <Compile Include="BBMetalWeb\WebsiteChildInfoViewForm.codegen.vb" />
+    <Compile Include="BBMetalWeb\WebsiteChurchPartnerChildSearchDataList.codegen.vb" />
     <Compile Include="BBMetalWeb\WebsiteSponsorshipPaymentsDataList.codegen.vb" />
     <Compile Include="Display Parts\ReferrerRecorder.Display.ascx.designer.vb">
       <DependentUpon>ReferrerRecorder.Display.ascx</DependentUpon>
