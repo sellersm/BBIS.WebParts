@@ -7,23 +7,23 @@ using System.Web.UI.WebControls;
 
 namespace OCM.BBISWebParts
 {
-    public partial class SponsorshipSearchEditOCMPartners : BBNCExtensions.Parts.CustomPartEditorBase
+	public partial class PartnerSponsorshipSearchEdit : BBNCExtensions.Parts.CustomPartEditorBase
     {
         protected Blackbaud.Web.Content.Portal.PageLink plinkMoreInfoTargetPage;
         protected Blackbaud.Web.Content.Portal.PageLink plinkSponsorTargetPage;
 
-        private SponsorshipSearchOptionsOcmPartners _myContent;
-        private SponsorshipSearchOptionsOcmPartners MyContent
+		private PartnerSponsorshipSearchOptions _myContent;
+		private PartnerSponsorshipSearchOptions MyContent
         {
             get
             {
                 if (_myContent == null)
                 {
-                    _myContent = (SponsorshipSearchOptionsOcmPartners)this.Content.GetContent(typeof(SponsorshipSearchOptionsOcmPartners));
+					_myContent = (PartnerSponsorshipSearchOptions)this.Content.GetContent(typeof(PartnerSponsorshipSearchOptions));
 
                     if (_myContent == null)
                     {
-                        _myContent = new SponsorshipSearchOptionsOcmPartners();
+						_myContent = new PartnerSponsorshipSearchOptions();
                     }
                 }
 
@@ -33,37 +33,36 @@ namespace OCM.BBISWebParts
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         public override void OnLoadContent()
         {
             if (!IsPostBack)
-            {
-                if (MyContent != null)
+            {    
+                if(MyContent != null)
                 {
+					txtPartnerLookupID.Text = MyContent.PartnerLookupID;
                     txtDocType.Text = MyContent.ThumbnailNoteType;
-                    txtResultsPerPage.Text = MyContent.ResultsPerPage.ToString();
+					txtResultsPerPage.Text = MyContent.ResultsPerPage.ToString();
                     plinkMoreInfoTargetPage.PageID = MyContent.MoreInfoPageID;
                     plinkSponsorTargetPage.PageID = MyContent.SponsorPageID;
-                    txtPartnerLookupId.Text = MyContent.PartnerLookupID;
                 }
             }
         }
 
         public override bool OnSaveContent(bool bDialogIsClosing)
         {
-            MyContent.ThumbnailNoteType = this.txtDocType.Text;
-
-            if (!String.IsNullOrEmpty(this.txtResultsPerPage.Text))
+			MyContent.PartnerLookupID = txtPartnerLookupID.Text;
+			MyContent.ThumbnailNoteType = this.txtDocType.Text;
+            
+            if (!String.IsNullOrEmpty(this.txtResultsPerPage.Text)) 
             {
                 MyContent.ResultsPerPage = Convert.ToInt32(this.txtResultsPerPage.Text);
             }
 
             MyContent.MoreInfoPageID = plinkMoreInfoTargetPage.PageID;
             MyContent.SponsorPageID = plinkSponsorTargetPage.PageID;
-
-            MyContent.PartnerLookupID = this.txtPartnerLookupId.Text;
 
             this.Content.SaveContent(MyContent);
 

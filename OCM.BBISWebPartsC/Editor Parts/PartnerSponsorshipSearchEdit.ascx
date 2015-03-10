@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SponsorshipSearchPartnerEdit.ascx.cs" Inherits="OCM.BBISWebParts.SponsorshipSearchPartnerEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PartnerSponsorshipSearchEdit.ascx.cs" Inherits="OCM.BBISWebParts.PartnerSponsorshipSearchEdit" %>
 <%@ Register TagPrefix="uc" TagName="PageLink" Src="~/admin/PageLink.ascx"  %>
 <table>
     <tr>
