@@ -152,7 +152,7 @@
     <Content Include="Editor Parts\SponsorshipPaymentPaymentFormEdit.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEdit2.ascx" />
     <Content Include="Editor Parts\SponsorshipSearchEditOCM.ascx" />
-    <Content Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx" />
+    <Content Include="Editor Parts\PartnerSponsorshipSearchEdit.ascx" />
     <Content Include="Editor Parts\WriteALetterChildListEdit.ascx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -414,12 +414,12 @@
     <Compile Include="Editor Parts\SponsorshipSearchEditOCM.ascx.designer.cs">
       <DependentUpon>SponsorshipSearchEditOCM.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx.cs">
-      <DependentUpon>SponsorshipSearchPartnerEdit.ascx</DependentUpon>
+    <Compile Include="Editor Parts\PartnerSponsorshipSearchEdit.ascx.cs">
+      <DependentUpon>PartnerSponsorshipSearchEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Editor Parts\SponsorshipSearchPartnerEdit.ascx.designer.cs">
-      <DependentUpon>SponsorshipSearchPartnerEdit.ascx</DependentUpon>
+    <Compile Include="Editor Parts\PartnerSponsorshipSearchEdit.ascx.designer.cs">
+      <DependentUpon>PartnerSponsorshipSearchEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\WriteALetterChildListEdit.ascx.cs">
       <DependentUpon>WriteALetterChildListEdit.ascx</DependentUpon>

@@ -10,7 +10,16 @@
 namespace OCM.BBISWebParts {
     
     
-    public partial class SponsorshipSearchEditOCMPartners {
+    public partial class PartnerSponsorshipSearchEdit {
+        
+        /// <summary>
+        /// txtPartnerLookupID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPartnerLookupID;
         
         /// <summary>
         /// txtDocType control.
@@ -29,14 +38,5 @@ namespace OCM.BBISWebParts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResultsPerPage;
-        
-        /// <summary>
-        /// txtPartnerLookupId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPartnerLookupId;
     }
 }
