@@ -144,8 +144,16 @@ namespace OCM.BBISWebParts
 					}
 					else
 					{
-						age0 = AGE;
-						age1 = AGE;
+						if (AGE.Substring(AGE.Length-1, 1) == "p")
+						{
+							age0 = AGE.Substring(0, AGE.Length - 1);
+							age1 = "99";
+						}
+						else
+						{
+							age0 = AGE;
+							age1 = AGE;
+						}
 					}
 				}
 			}            

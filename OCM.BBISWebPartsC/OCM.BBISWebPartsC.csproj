@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
+    <Content Include="Display Parts\PartnerSponsorshipSearchGridDisplay.ascx" />
     <Content Include="Display Parts\PartnerChildProfileDisplay.ascx" />
     <Content Include="Display Parts\RateIncreaseReversalFormDisplay.ascx" />
     <Content Include="Display Parts\CountryProfileDisplay2.ascx" />
@@ -137,6 +138,7 @@
     <Content Include="Display Parts\PartnerSponsorshipSearchDisplay.ascx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\PartnerSponsorshipSearchGridEdit.ascx" />
     <Content Include="Editor Parts\PartnerChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\RateIncreaseReversalFormEdit.ascx" />
     <Content Include="Editor Parts\CountryProfileEdit2.ascx" />
@@ -175,6 +177,13 @@
     </Compile>
     <Compile Include="Display Parts\ChildProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\PartnerSponsorshipSearchGridDisplay.ascx.cs">
+      <DependentUpon>PartnerSponsorshipSearchGridDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\PartnerSponsorshipSearchGridDisplay.ascx.designer.cs">
+      <DependentUpon>PartnerSponsorshipSearchGridDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\PartnerChildProfileDisplay.ascx.cs">
       <DependentUpon>PartnerChildProfileDisplay.ascx</DependentUpon>
@@ -308,6 +317,13 @@
     </Compile>
     <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
       <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\PartnerSponsorshipSearchGridEdit.ascx.cs">
+      <DependentUpon>PartnerSponsorshipSearchGridEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\PartnerSponsorshipSearchGridEdit.ascx.designer.cs">
+      <DependentUpon>PartnerSponsorshipSearchGridEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\PartnerChildProfileEdit2.ascx.cs">
       <DependentUpon>PartnerChildProfileEdit2.ascx</DependentUpon>
