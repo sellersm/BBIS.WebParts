@@ -876,13 +876,11 @@
                                     </tr>                                    
                                     <tr id="trSponsorId" runat="server" visible="false">
                                         <td>
-                                            <span class="BBFieldCaption ChildSearchFieldCaption">Donor/Sponsor ID</span><span class="NCC_ScholarshipApp_requiredIndicator">&nbsp;*</span>
+                                            <span class="BBFieldCaption ChildSearchFieldCaption">Donor/Sponsor ID</span>
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtSponsorId" runat="server" />
-										 <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" 
-                                                    ControlToValidate="txtSponsorId" ErrorMessage="Donor/Sponsor ID" ForeColor="Red" 
-                                                    ValidationGroup="Checkout">*</asp:RequiredFieldValidator>
+								
                                         </td>
                                     </tr>
                                     <tr id="trHearAboutSelection" runat="server">
@@ -897,11 +895,9 @@
                                                 onselectedindexchanged="cmbHearAbout_SelectedIndexChanged">
                                                 <asp:ListItem Value="">-- Select --</asp:ListItem>
 			                                    <asp:ListItem Value="Appeal">Appeal Code</asp:ListItem>
-			                                    <asp:ListItem Value="ChildrensCup">Children's Cup</asp:ListItem>
 			                                    <asp:ListItem Value="Concert">Concert/Artist</asp:ListItem>
 			                                    <asp:ListItem Value="Facebook">Facebook</asp:ListItem>
 			                                    <asp:ListItem Value="Friend">Friend</asp:ListItem>
-			                                    <asp:ListItem Value="HeavenlyHomemakers">Heavenly Homemakers</asp:ListItem>
 			                                    <asp:ListItem Value="Internet">Internet</asp:ListItem>
 			                                    <asp:ListItem Value="MinistryRep">Ministry Representative</asp:ListItem>
 			                                    <asp:ListItem Value="Radio">Radio</asp:ListItem>

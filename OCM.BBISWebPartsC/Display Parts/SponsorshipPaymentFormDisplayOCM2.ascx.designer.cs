@@ -445,15 +445,6 @@ namespace OCM.BBISWebParts {
         protected global::System.Web.UI.WebControls.TextBox txtSponsorId;
         
         /// <summary>
-        /// RequiredFieldValidator20 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator20;
-        
-        /// <summary>
         /// trHearAboutSelection control.
         /// </summary>
         /// <remarks>
