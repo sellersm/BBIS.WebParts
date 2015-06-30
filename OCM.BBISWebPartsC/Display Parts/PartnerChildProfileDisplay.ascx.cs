@@ -22,8 +22,8 @@ namespace OCM.BBISWebParts
         {
 			if ((MyContent != null) && (countryID != null))
             {
-				this.lblCountryInfo1.Text = Utility.GetNoteTextFromConstituent(countryID, MyContent.CountryBioDocType);
-				this.lblCountryInfo2.Text = Utility.GetNoteTextFromConstituent(countryID, MyContent.CountryBioDocType);
+				this.lblCountryInfo1.Text = Utility.GetNotePlainTextFromConstituent(countryID, MyContent.CountryBioDocType);
+				this.lblCountryInfo2.Text = Utility.GetNotePlainTextFromConstituent(countryID, MyContent.CountryBioDocType);
             }
         }
 
@@ -31,8 +31,8 @@ namespace OCM.BBISWebParts
         {
             if ((MyContent != null) && (projectID != null))
             {
-				this.lblProjectInfo1.Text = Utility.GetNoteTextFromConstituent(projectID, MyContent.ProjectBioDocType);
-				this.lblProjectInfo2.Text = Utility.GetNoteTextFromConstituent(projectID, MyContent.ProjectBioDocType);
+				this.lblProjectInfo1.Text = Utility.GetNotePlainTextFromConstituent(projectID, MyContent.ProjectBioDocType);
+				this.lblProjectInfo2.Text = Utility.GetNotePlainTextFromConstituent(projectID, MyContent.ProjectBioDocType);
             }
         }
 
@@ -108,7 +108,7 @@ namespace OCM.BBISWebParts
                 this.lblchildAge.Text = reader["AGE"].ToString();
                 this.lblchildGender.Text = reader["GENDER"].ToString();
                 this.lblchildBirthdate.Text = reader["BIRTHDATE"].ToString();
-				this.lblchildProject.Text = reader["COUNTRYID"].ToString();
+				this.lblchildProject.Text = reader["PROJECTNAME"].ToString();
 
                 //this.lblchildNumber.Text = reader["CHILDNO"].ToString();
                 //this.lblchildSponsorAmount.Text = Utility.GetSponsorshipAmount().ToString("c");
@@ -129,8 +129,8 @@ namespace OCM.BBISWebParts
                 this.lnkSponsor1.PostBackUrl = sponsorUrl;
                 this.lnkSponsor2.PostBackUrl = sponsorUrl;
 
-                this.lblchildBio1.Text = Utility.GetNoteTextFromSponsorship(this.API.AppFxWebServiceProvider, new Guid(reader["ID"].ToString()), MyContent.ChildBioDocType);
-                this.lblchildBio2.Text = Utility.GetNoteTextFromSponsorship(this.API.AppFxWebServiceProvider, new Guid(reader["ID"].ToString()), MyContent.ChildBioDocType);
+				this.lblchildBio1.Text = Utility.GetNotePlainTextFromSponsorship(this.API.AppFxWebServiceProvider, new Guid(reader["ID"].ToString()), MyContent.ChildBioDocType);
+				this.lblchildBio2.Text = Utility.GetNotePlainTextFromSponsorship(this.API.AppFxWebServiceProvider, new Guid(reader["ID"].ToString()), MyContent.ChildBioDocType);
                 this.imgPhoto.ImageUrl = "ImageHandler.ashx?context=sponsorship&type=" + MyContent.FullPhotoType + "&id=" + reader["ID"];
             }
             con.Close();
