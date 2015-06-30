@@ -6,7 +6,7 @@
     onrowediting="gvCart_RowEditing" onrowdeleting="gvCart_RowDeleting" 
     onrowupdating="gvCart_RowUpdating">
     <Columns>
-        <asp:TemplateField HeaderText="Child No.">
+        <asp:TemplateField HeaderText="Child ID">
             <ItemTemplate>
                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Number") %>'></asp:Label>
             </ItemTemplate>
@@ -32,10 +32,9 @@
             </ItemTemplate>
             <ItemStyle Width="70px" />            
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Edit Cart" ShowHeader="False">
+        <asp:TemplateField HeaderText="" ShowHeader="False">
             <ItemTemplate>
-                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"/>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:Button ID="btnCheckout" runat="server" Text="Continue >>" onclick="btnContinue_Click"  />

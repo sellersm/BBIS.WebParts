@@ -1,13 +1,13 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PartnerSponsorshipSearchEdit.ascx.cs" Inherits="OCM.BBISWebParts.PartnerSponsorshipSearchEdit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PartnerSponsorshipSearchGridEdit.ascx.cs" Inherits="OCM.BBISWebParts.PartnerSponsorshipSearchGridEdit" %>
 <%@ Register TagPrefix="uc" TagName="PageLink" Src="~/admin/PageLink.ascx"  %>
 <table>
     <tr>
-        <td>Partner/Event ID</td>
-        <td><asp:TextBox ID="txtPartnerLookupID" runat="server" Width="300px" /></td>
+        <td>Partner Lookup ID</td>
+        <td><asp:TextBox ID="txtPartnerLookupID" runat="server" /></td>
     </tr>
     <tr>
         <td>Thumnail Image Doc Type</td>
-        <td><asp:TextBox ID="txtDocType" runat="server" Width="300px" /></td>
+        <td><asp:TextBox ID="txtDocType" runat="server" /></td>
     </tr>
     <tr>
         <td>Results Per Page</td>

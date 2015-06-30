@@ -1104,7 +1104,7 @@
     </tr>
     <tr>
         <td class="style1">
-            &nbsp;<asp:Button ID="btnSubmit" runat="server" Text="Checkout" 
+            &nbsp;<asp:Button ID="btnSubmit" runat="server" Text="Complete Sponsorship" 
                 ValidationGroup="Checkout" onclick="btnSubmit_Click" />
         </td>
     </tr>

@@ -66,8 +66,10 @@ namespace OCM.BBISWebParts
                 {
                     foreach (DataRow dr in this.cartData.Rows)
                     {
-                        results += Convert.ToInt32(dr["Months"]) * Convert.ToDecimal(dr["Amount"]);
-                    }
+						results += Convert.ToInt32(dr["Months"]) * Convert.ToDecimal(dr["Amount"]);
+						// Change to this if edit cart is removed 
+						// results += Convert.ToDecimal(dr["Amount"]);
+					}
                 }
                 return results;
             }

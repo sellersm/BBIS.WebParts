@@ -114,6 +114,52 @@ namespace OCM.BBISWebParts.Classes
             return results;
         }
 
+
+		public static string GetNotePlainTextFromSponsorship(AppFxWebServiceProvider provider, Guid constituentId, string type)
+		{
+			string results = "";
+
+			SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString);
+			string sql = @"
+                SELECT 
+                    TEXTNOTE 
+                FROM 
+                    dbo.SPONSORSHIPOPPORTUNITY so
+                    INNER JOIN dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on so_child.ID = so.ID
+                    INNER JOIN SPONSORSHIPOPPORTUNITYNOTE n ON n.SPONSORSHIPOPPORTUNITYID = so.ID 
+                    INNER JOIN SPROPPNOTETYPECODE t ON n.SPROPPNOTETYPECODEID = t.ID
+                WHERE 
+                    so_child.CONSTITUENTID = @ID
+                    AND t.DESCRIPTION = @TYPE";
+
+			SqlCommand cmd = new SqlCommand(sql, con);
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.AddWithValue("ID", constituentId.ToString());
+			cmd.Parameters.AddWithValue("TYPE", type);
+
+			con.Open();
+			results = (string)cmd.ExecuteScalar();
+			con.Close();
+
+
+			//DataListLoadRequest request = SponsorshipOpportunityDocumentationDataList.CreateRequest(provider);
+			//request.DataListID = new Guid("1eb02c18-8111-4129-b718-e35ef62e1cfa");
+			//request.ContextRecordID = constituentId.ToString();
+			//SponsorshipOpportunityDocumentationDataListRow[] rows = SponsorshipOpportunityDocumentationDataList.GetRows(provider, request);
+			//foreach (SponsorshipOpportunityDocumentationDataListRow row in rows)
+			//{
+			//    if (row.TYPE == type && row.DOCUMENTATIONTYPE == "Note")
+			//    {
+			//        DataFormLoadRequest noteRequest = SponsorshipOpportunityNoteViewForm.CreateRequest(provider);
+			//        noteRequest.RecordID = row.ID.ToString();
+			//        SponsorshipOpportunityNoteViewFormData note = SponsorshipOpportunityNoteViewForm.LoadData(provider, noteRequest);
+			//        results = note.TEXTNOTE;
+			//        break;
+			//    }
+			//}
+			return results;
+		}
+
         public static string GetNoteTextFromConstituent(Guid constituentId, string type)
         {
             string results = "";
@@ -164,7 +210,59 @@ namespace OCM.BBISWebParts.Classes
             return results;
         }
 
-        public static decimal GetSponsorshipAmount()
+
+		public static string GetNotePlainTextFromConstituent(Guid constituentId, string type)
+		{
+			string results = "";
+
+			SqlConnection con = new SqlConnection(Blackbaud.Web.Content.Core.Settings.ConnectionString);
+			string sql = @"
+                SELECT 
+	                TEXTNOTE 
+                FROM 
+	                dbo.CONSTITUENTNOTE c
+	                INNER JOIN CONSTITUENTNOTETYPECODE t ON c.CONSTITUENTNOTETYPECODEID = t.ID 
+                WHERE 
+	                CONSTITUENTID = @ID
+	                AND t.DESCRIPTION = @TYPE";
+
+			SqlCommand cmd = new SqlCommand(sql, con);
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.AddWithValue("ID", constituentId.ToString());
+			cmd.Parameters.AddWithValue("TYPE", type);
+
+			con.Open();
+			results = (string)cmd.ExecuteScalar();
+			con.Close();
+
+
+			//DataListLoadRequest request = ConstituentDocumentationList.CreateRequest(provider);
+			////request.DataListID = new Guid("d100a5c3-fbc1-4d0f-b7da-eda314f28fbe");
+			//request.ContextRecordID = constituentId.ToString();
+			//request.DataListName = "Constituent Documentation List";
+			//ConstituentDocumentationListRow[] rows = ConstituentDocumentationList.GetRows(provider, request);
+			//foreach (ConstituentDocumentationListRow row in rows)
+			//{
+			//    if (row.TYPE == type && row.DOCUMENTATIONTYPE == "Note")
+			//    {
+			//        //DataFormLoadRequest noteRequest = ConstituentNoteViewForm.CreateRequest(provider);
+			//        //noteRequest.RecordID = row.ID.ToString();
+			//        //ConstituentNoteViewFormData note = ConstituentNoteViewForm.LoadData(provider, noteRequest);
+			//        //results = note.TEXTNOTE;
+			//        //break;
+			//    }
+			//}
+
+			//DataFormLoadRequest noteRequest = ConstituentNoteViewForm.CreateRequest(provider);
+			//noteRequest.RecordID = "5440382E-C11C-4D10-BC14-997AC545F368";
+			//ConstituentNoteViewFormData note = ConstituentNoteViewForm.LoadData(provider, noteRequest);
+			//results = note.TEXTNOTE;
+
+			return results;
+		}
+
+
+		public static decimal GetSponsorshipAmount()
         {
             decimal results = 0;
 
