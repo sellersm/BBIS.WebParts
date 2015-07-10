@@ -48,7 +48,7 @@ namespace OCM.BBISWebParts
                 {
                     this.currentPage = 0;
                     
-                    this.bindSearchResults(true);  //force db refresh because filter values may have changed
+                    this.BindSearchResults(true);  //force db refresh because filter values may have changed
                 }
                 catch (Exception ex)
                 {
@@ -240,7 +240,7 @@ namespace OCM.BBISWebParts
             return dt;
         }
 
-        private int bindSearchResults(bool forceRefresh = false)
+        private int BindSearchResults(bool forceRefresh = false)
         {
             DataTable dt = null;
             
@@ -271,18 +271,7 @@ namespace OCM.BBISWebParts
 
             this.rptSearch.DataSource = page;
             this.rptSearch.DataBind();
-
-            if (dt.Rows.Count > 0)
-            {
-                this.bindNav(dt.Rows.Count);
-                this.pnlNav.Visible = true;
-                this.pnlNoResults.Visible = false;
-            }
-            else
-            {
-                this.pnlNav.Visible = false;
-                this.pnlNoResults.Visible = true;
-            }
+			this.BindNav(dt.Rows.Count);
 
             return dt.Rows.Count;
         }
@@ -292,55 +281,124 @@ namespace OCM.BBISWebParts
             return bindSearchResults(true, forceRefresh);
         }
 */
-        private void bindNav(int totalRecords)
+
+		// csm - Created new version of bindNav because the logic was simplified
+		private void BindNav(int totalRecords)
         {
-			
-            int numberofPages = totalRecords / MyContent.ResultsPerPage;
-            
-            if (totalRecords % MyContent.ResultsPerPage > 0)
-            {
-                numberofPages++;
-            }
-
-            maxPage = numberofPages;
-
-            int currentMax = (this.currentPage + 1) * MyContent.ResultsPerPage;
-            int currentMin = (currentMax - MyContent.ResultsPerPage) + 1;
-
-            //"next" should be enabled only if there are more records to show
-            if (currentMax >= totalRecords)
-            {
-                currentMax = totalRecords;
-                this.lnkNext.Enabled = false;                
-            }
-            else
-            {
-                this.lnkNext.Enabled = true;
-            }
-
-            if(numberofPages == 1)
-            {
-				//***Removed by DSong this.lnkFirst.Enabled = false;
-				//***Removed by DSong this.lnkLast.Enabled = false;   
-                this.lnkNext.Enabled = false;
-                this.lnkPrevious.Enabled = false;
-            }
-            else
-            {
-				//***Removed by DSong this.lnkFirst.Enabled = true;
-				//***Removed by DSong this.lnkLast.Enabled = true;
-                this.lnkNext.Enabled = true;
-                this.lnkPrevious.Enabled = true;
-            }
-
-            //***Removed by DSong this.lblCount.Text = currentMin.ToString() + " - " + currentMax.ToString() + " of " + totalRecords.ToString();
+			int numberOfPages = (int)Math.Ceiling((double)totalRecords / (double)MyContent.ResultsPerPage);
+			maxPage = numberOfPages;
 
             this.cmbPages.Items.Clear();
-            for (int i = 1; i <= numberofPages; i++)
+            for (int i = 1; i <= numberOfPages; i++)
             {
                 this.cmbPages.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            }            
+            }
+			cmbPages.SelectedIndex = currentPage;
+			this.lnkPrevious.Visible = (currentPage != 0);
+			this.lnkNext.Visible = (currentPage < numberOfPages-1);
         }
+
+		// Original Blackbaud code
+		
+		//private int bindSearchResults(bool forceRefresh = false)
+		//{
+		//    DataTable dt = null;
+
+		//    if (!forceRefresh)
+		//    {
+		//        dt = BBSession.Retrieve<DataTable>("CHILDREN");
+		//    }
+		//    else
+		//    {
+		//        dt = GetChildrenDataSet();
+		//    }
+
+		//    PagedDataSource page = new PagedDataSource();
+		//    page.DataSource = dt.DefaultView;
+		//    page.AllowPaging = true;
+		//    page.PageSize = MyContent.ResultsPerPage;
+		//    page.CurrentPageIndex = this.currentPage;
+
+		//    if (CHOOSEFORME != null)
+		//    {
+		//        if (CHOOSEFORME.ToUpper() == "Y" && dt.Rows.Count > 0)
+		//        {
+		//            Dictionary<string, string> qs = new Dictionary<string, string>();
+		//            qs.Add("id", dt.Rows[0]["ID"].ToString());
+		//            Utility.RedirectToBBISPage(MyContent.MoreInfoPageID, qs);
+		//        }
+		//    }
+
+		//    this.rptSearch.DataSource = page;
+		//    this.rptSearch.DataBind();
+
+		//    if (dt.Rows.Count > 0)
+		//    {
+		//        this.bindNav(dt.Rows.Count);
+		//        this.pnlNav.Visible = true;
+		//        this.pnlNoResults.Visible = false;
+		//    }
+		//    else
+		//    {
+		//        this.pnlNav.Visible = false;
+		//        this.pnlNoResults.Visible = true;
+		//    }
+
+		//    return dt.Rows.Count;
+		//}
+		
+		//private void bindNav(int totalRecords)
+		//{
+			
+		//    int numberofPages = totalRecords / MyContent.ResultsPerPage;
+            
+		//    if (totalRecords % MyContent.ResultsPerPage > 0)
+		//    {
+		//        numberofPages++;
+		//    }
+
+		//    maxPage = numberofPages;
+
+		//    int currentMax = (this.currentPage + 1) * MyContent.ResultsPerPage;
+		//    int currentMin = (currentMax - MyContent.ResultsPerPage) + 1;
+
+		//    //"next" should be enabled only if there are more records to show
+		//    if (currentMax >= totalRecords)
+		//    {
+		//        currentMax = totalRecords;
+		//        this.lnkNext.Enabled = false;                
+		//    }
+		//    else
+		//    {
+		//        this.lnkNext.Enabled = true;
+		//    }
+
+		//    //csm - changed from disabled to not vi
+
+
+		//    //if(numberofPages == 1)
+		//    //{
+		//    //    //***Removed by DSong this.lnkFirst.Enabled = false;
+		//    //    //***Removed by DSong this.lnkLast.Enabled = false;   
+		//    //    this.lnkNext.Enabled = false;
+		//    //    this.lnkPrevious.Enabled = false;
+		//    //}
+		//    //else
+		//    //{
+		//    //    //***Removed by DSong this.lnkFirst.Enabled = true;
+		//    //    //***Removed by DSong this.lnkLast.Enabled = true;
+		//    //    this.lnkNext.Enabled = true;
+		//    //    this.lnkPrevious.Enabled = true;
+		//    //}
+
+		//    //***Removed by DSong this.lblCount.Text = currentMin.ToString() + " - " + currentMax.ToString() + " of " + totalRecords.ToString();
+
+		//    this.cmbPages.Items.Clear();
+		//    for (int i = 1; i <= numberofPages; i++)
+		//    {
+		//        this.cmbPages.Items.Add(new ListItem(i.ToString(), i.ToString()));
+		//    }            
+		//}
 
         protected void rptSearch_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -386,7 +444,7 @@ namespace OCM.BBISWebParts
                 this.currentPage++;
             }
 
-            this.bindSearchResults(false);
+            this.BindSearchResults(false);
         }
 
         protected void lnkPrevious_Click(object sender, EventArgs e)
@@ -394,35 +452,35 @@ namespace OCM.BBISWebParts
             if (this.currentPage != 0)
             {
                 this.currentPage--;
-                this.bindSearchResults(false);
+                this.BindSearchResults(false);
             }
         }
 
-        protected void lnkFirst_Click(object sender, EventArgs e)
-        {
-            this.currentPage = 0;
-            this.bindSearchResults(false);
-        }
+		//protected void lnkFirst_Click(object sender, EventArgs e)
+		//{
+		//    this.currentPage = 0;
+		//    this.BindSearchResults(false);
+		//}
 
-        protected void lnkLast_Click(object sender, EventArgs e)
-        {
-            var resultsCount = this.bindSearchResults();
-            var resultsPerPage = MyContent.ResultsPerPage;
-            var currPage = resultsCount / resultsPerPage;
+		//protected void lnkLast_Click(object sender, EventArgs e)
+		//{
+		//    var resultsCount = this.BindSearchResults();
+		//    var resultsPerPage = MyContent.ResultsPerPage;
+		//    var currPage = resultsCount / resultsPerPage;
 
-            if(resultsCount % resultsPerPage == 0)
-            {
-                currPage -= 1;
-            }
+		//    if(resultsCount % resultsPerPage == 0)
+		//    {
+		//        currPage -= 1;
+		//    }
 
-            this.currentPage = currPage;
-            this.bindSearchResults(false);
-        }
+		//    this.currentPage = currPage;
+		//    this.BindSearchResults(false);
+		//}
 
         protected void cmbPages_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.currentPage = Convert.ToInt32(this.cmbPages.SelectedValue) - 1;
-            this.bindSearchResults(true);
+            this.BindSearchResults(false);
         }
     }
 }

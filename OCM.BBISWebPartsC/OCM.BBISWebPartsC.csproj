@@ -118,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display Parts\ChildProfileDisplay2.ascx" />
+    <Content Include="Display Parts\PartnerEventSponsorshipPaymentFormDisplay.ascx" />
+    <Content Include="Display Parts\EventChildProfileDisplay.ascx" />
+    <Content Include="Display Parts\EventSponsorshipPaymentFormDisplay.ascx" />
     <Content Include="Display Parts\PartnerSponsorshipSearchGridDisplay.ascx" />
     <Content Include="Display Parts\PartnerChildProfileDisplay.ascx" />
     <Content Include="Display Parts\RateIncreaseReversalFormDisplay.ascx" />
@@ -128,6 +131,7 @@
     <Content Include="Display Parts\MySponsorshipsDisplay3.ascx" />
     <Content Include="Display Parts\MyTransactionManagerDisplay.ascx" />
     <Content Include="Display Parts\ProjectProfileDisplay2.ascx" />
+    <Content Include="Display Parts\SessionPageActivityDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipCartPartnerDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentCartDisplay.ascx" />
     <Content Include="Display Parts\SponsorshipPaymentFormDisplayOCM.ascx" />
@@ -138,6 +142,10 @@
     <Content Include="Display Parts\PartnerSponsorshipSearchDisplay.ascx" />
     <Content Include="Display Parts\WriteALetterChildListDisplay.ascx" />
     <Content Include="Editor Parts\ChildProfileEdit2.ascx" />
+    <Content Include="Editor Parts\PartnerEventSponsorshipPaymentFormEdit.ascx" />
+    <Content Include="Editor Parts\SessionPageActivityEdit.ascx" />
+    <Content Include="Editor Parts\EventSponsorshipPaymentFormEdit.ascx" />
+    <Content Include="Editor Parts\EventChildProfileEdit.ascx" />
     <Content Include="Editor Parts\PartnerSponsorshipSearchGridEdit.ascx" />
     <Content Include="Editor Parts\PartnerChildProfileEdit2.ascx" />
     <Content Include="Editor Parts\RateIncreaseReversalFormEdit.ascx" />
@@ -177,6 +185,27 @@
     </Compile>
     <Compile Include="Display Parts\ChildProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ChildProfileDisplay2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\PartnerEventSponsorshipPaymentFormDisplay.ascx.cs">
+      <DependentUpon>PartnerEventSponsorshipPaymentFormDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\PartnerEventSponsorshipPaymentFormDisplay.ascx.designer.cs">
+      <DependentUpon>PartnerEventSponsorshipPaymentFormDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\EventChildProfileDisplay.ascx.cs">
+      <DependentUpon>EventChildProfileDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\EventChildProfileDisplay.ascx.designer.cs">
+      <DependentUpon>EventChildProfileDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display Parts\EventSponsorshipPaymentFormDisplay.ascx.cs">
+      <DependentUpon>EventSponsorshipPaymentFormDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\EventSponsorshipPaymentFormDisplay.ascx.designer.cs">
+      <DependentUpon>EventSponsorshipPaymentFormDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Display Parts\PartnerSponsorshipSearchGridDisplay.ascx.cs">
       <DependentUpon>PartnerSponsorshipSearchGridDisplay.ascx</DependentUpon>
@@ -248,6 +277,13 @@
     <Compile Include="Display Parts\ProjectProfileDisplay2.ascx.designer.cs">
       <DependentUpon>ProjectProfileDisplay2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display Parts\SessionPageActivityDisplay.ascx.cs">
+      <DependentUpon>SessionPageActivityDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display Parts\SessionPageActivityDisplay.ascx.designer.cs">
+      <DependentUpon>SessionPageActivityDisplay.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display Parts\SponsorshipCartPartnerDisplay.ascx.cs">
       <DependentUpon>SponsorshipCartPartnerDisplay.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,6 +353,34 @@
     </Compile>
     <Compile Include="Editor Parts\ChildProfileEdit2.ascx.designer.cs">
       <DependentUpon>ChildProfileEdit2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\PartnerEventSponsorshipPaymentFormEdit.ascx.cs">
+      <DependentUpon>PartnerEventSponsorshipPaymentFormEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\PartnerEventSponsorshipPaymentFormEdit.ascx.designer.cs">
+      <DependentUpon>PartnerEventSponsorshipPaymentFormEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\SessionPageActivityEdit.ascx.cs">
+      <DependentUpon>SessionPageActivityEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\SessionPageActivityEdit.ascx.designer.cs">
+      <DependentUpon>SessionPageActivityEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\EventSponsorshipPaymentFormEdit.ascx.cs">
+      <DependentUpon>EventSponsorshipPaymentFormEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\EventSponsorshipPaymentFormEdit.ascx.designer.cs">
+      <DependentUpon>EventSponsorshipPaymentFormEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Editor Parts\EventChildProfileEdit.ascx.cs">
+      <DependentUpon>EventChildProfileEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editor Parts\EventChildProfileEdit.ascx.designer.cs">
+      <DependentUpon>EventChildProfileEdit.ascx</DependentUpon>
     </Compile>
     <Compile Include="Editor Parts\PartnerSponsorshipSearchGridEdit.ascx.cs">
       <DependentUpon>PartnerSponsorshipSearchGridEdit.ascx</DependentUpon>
@@ -446,6 +510,10 @@
     </Compile>
     <Compile Include="Editor Preferences\ChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\ConfirmationEmailOptions.cs" />
+    <Compile Include="Editor Preferences\PartnerEventSponsorshipPaymentFormOptions.cs" />
+    <Compile Include="Editor Preferences\SessionPageActivityOptions.cs" />
+    <Compile Include="Editor Preferences\EventSponsorshipPaymentFormOptions.cs" />
+    <Compile Include="Editor Preferences\EventChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\PartnerChildProfileOptions.cs" />
     <Compile Include="Editor Preferences\RateIncreaseReversalFormOptions.cs" />
     <Compile Include="Editor Preferences\SponsorshipCartPartnerOptions.cs" />

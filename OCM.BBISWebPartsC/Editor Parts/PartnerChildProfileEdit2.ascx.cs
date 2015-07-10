@@ -15,7 +15,7 @@ namespace OCM.BBISWebParts
         protected Blackbaud.Web.Content.Portal.PageLink plinkSponsorPage;
 
 		private PartnerChildProfileOptions _myContent;
-        private PartnerChildProfileOptions MyContent
+		private PartnerChildProfileOptions MyContent
         {
             get
             {

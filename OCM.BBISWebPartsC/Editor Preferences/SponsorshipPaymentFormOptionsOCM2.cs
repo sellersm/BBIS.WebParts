@@ -40,6 +40,13 @@ namespace OCM.BBISWebParts
         {
             get { return this.thankYouEmailSubject; }
             set { this.thankYouEmailSubject = value; }
-        }        
+        }
+		
+		private ConfirmationEmailOptions _emailOptions;
+		public ConfirmationEmailOptions EmailOptions
+		{
+			get { return _emailOptions; }
+			set { _emailOptions = value; }
+		}
     }
 }
